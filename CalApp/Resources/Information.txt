@@ -1,0 +1,1 @@
+﻿This app provides tray icons for the calendar week and the fiscal week. The fiscal year can be adjusted, the calendar year is tied to the ISO definition.
