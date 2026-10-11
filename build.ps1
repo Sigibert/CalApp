@@ -26,12 +26,13 @@ if ($LASTEXITCODE -ne 0) { throw "Regression tests failed with exit code $LASTEX
 if ($Package) {
     if ($Configuration -ne 'Release') { throw 'Packages must use the Release configuration.' }
     $applicationPath = Join-Path $projectRoot 'CalApp\bin\Release\CalendarWeekInfo.exe'
-    $version = [Diagnostics.FileVersionInfo]::GetVersionInfo($applicationPath).FileVersion
+    $version = [Diagnostics.FileVersionInfo]::GetVersionInfo($applicationPath).ProductVersion
     $artifactDirectory = Join-Path $projectRoot 'artifacts'
     New-Item -ItemType Directory -Path $artifactDirectory -Force | Out-Null
     $archivePath = Join-Path $artifactDirectory "CalendarWeekInfo-$version.zip"
     $packageFiles = @($applicationPath, "$applicationPath.config",
-        (Join-Path $projectRoot 'README.md'), (Join-Path $projectRoot 'CHANGELOG.md'), (Join-Path $projectRoot 'LICENSE'))
+        (Join-Path $projectRoot 'README.md'), (Join-Path $projectRoot 'CHANGELOG.md'),
+        (Join-Path $projectRoot 'VERSIONING.md'), (Join-Path $projectRoot 'LICENSE'))
     Compress-Archive -LiteralPath $packageFiles -DestinationPath $archivePath -Force
     Write-Host "Package: $archivePath"
 }

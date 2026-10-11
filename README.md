@@ -113,6 +113,8 @@ color is temporarily enabled.
 
 ## Code layout
 
+Release numbering and the preparation process are documented in [VERSIONING.md](VERSIONING.md).
+
 - `TrayApplicationContext`: owns settings, refresh, application lifetime, and window coordination.
 - `TrayIcons`: owns the tray icons and their context menu, with the established 16-pixel number rendering.
 - `ApplicationLifetimeWindow`: a lightweight hidden dialog owner that receives Windows shutdown messages.
@@ -125,7 +127,7 @@ color is temporarily enabled.
 - `CalApp.Tests`: regression runner with isolated temporary settings and fake startup entries.
 
 The stable 1.1 baseline is kept on `master` and tagged `v1.1.0`. The compatible 1.2
-architecture update is developed on `dev`; existing preferences and week-icon
+architecture update is developed on `dev` as `1.2.0-rc.1`; existing preferences and week-icon
 appearance remain compatible. Startup, background refresh, and preferences never
 create the calendar view. Closing the calendar hides it; Exit ends the tray application.
 

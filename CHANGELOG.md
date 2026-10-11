@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.2.0
+## 1.2.0-rc.1
 
 - Make the tray application own icons, menus, refresh, and application lifetime.
 - Create the calendar window only when first requested; preferences do not require it.

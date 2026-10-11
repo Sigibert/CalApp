@@ -1,0 +1,7 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <!-- Change this one value when preparing the next release. -->
+    <CalAppVersion>1.2.0-rc.1</CalAppVersion>
+    <CalAppNumericVersion>$([System.Text.RegularExpressions.Regex]::Replace('$(CalAppVersion)', '[-+].*$', '')).0</CalAppNumericVersion>
+  </PropertyGroup>
+</Project>
