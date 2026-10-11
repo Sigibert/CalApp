@@ -74,7 +74,7 @@ namespace CalApp.Tests
                 Run("Native tray registration, Explorer recovery and input callbacks", NativeTray);
                 Run("Installer closes the lifetime owner without creating a calendar", InstallerShutdown);
                 Run("Apply switches language immediately and preserves calendar selection", LanguageSwitch);
-                Run("Today button and keyboard shortcuts use the application clock", CalendarNavigation);
+                Run("Calendar keyboard shortcuts use the application clock", CalendarNavigation);
                 Run("Fiscal preview follows pending rules and fiscal-year boundaries", FiscalPreview);
                 Run("Imported settings remain pending; export does not apply changes", TransferControls);
                 Run("Update dialog handles results, private access and closing during lookup", UpdateDialog);
@@ -772,7 +772,6 @@ namespace CalApp.Tests
             {
                 CalendarForm calendar = context.GetCalendar();
                 calendar.SelectDate(new DateTime(2024, 1, 1));
-                Invoke(calendar, "TodayButton_Click"); Equal(now.Date, calendar.SelectedDate);
                 now = now.AddDays(1);
                 var processKey = typeof(CalendarForm).GetMethod("ProcessCmdKey", BindingFlags.Instance | BindingFlags.NonPublic);
                 Message message = Message.Create(IntPtr.Zero, 0, IntPtr.Zero, IntPtr.Zero);

@@ -2,7 +2,6 @@ using System;
 using System.Windows.Forms;
 using CalApp.DateFunctions;
 using CalApp.Localization;
-using System.Drawing;
 
 namespace CalApp
 {
@@ -14,23 +13,18 @@ namespace CalApp
         public event EventHandler AboutRequested;
         public event EventHandler ExitRequested;
         public event EventHandler TodayRequested;
-        private readonly Button todayButton = new Button { Name = "todayButton", TabIndex = 8 };
         public DateTime SelectedDate => dateCalendar.SelectionStart.Date;
 
         public CalendarForm()
         {
             InitializeComponent();
             dateCalendar.MaxSelectionCount = 1;
-            todayButton.Location = new Point(dateSelectionGroup.Left, dateSelectionGroup.Bottom + 6);
-            todayButton.Click += TodayButton_Click;
-            Controls.Add(todayButton);
             ApplyLanguage();
         }
 
         internal void ApplyLanguage()
         {
             AppText.Translate(this);
-            todayButton.Width = Math.Max(75, TextRenderer.MeasureText(todayButton.Text, todayButton.Font).Width + 16);
         }
 
         protected override bool ProcessCmdKey(ref Message message, Keys keyData)
@@ -39,8 +33,6 @@ namespace CalApp
             if (keyData == (Keys.Control | Keys.T)) { TodayRequested?.Invoke(this, EventArgs.Empty); return true; }
             return base.ProcessCmdKey(ref message, keyData);
         }
-
-        private void TodayButton_Click(object sender, EventArgs e) => TodayRequested?.Invoke(this, e);
 
         public void SelectDate(DateTime date) => dateCalendar.SetDate(date.Date);
 

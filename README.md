@@ -136,7 +136,7 @@ English resources are built into the EXE; the German pack is
 the ZIP package; setup installs and updates it automatically.
 
 - **Left-click** a tray icon: show/hide the info panel.
-- **Today** or **Ctrl+T**: select the current date again. **Escape** hides the calendar.
+- Click the calendar's built-in **Today** line or press **Ctrl+T** to select the current date again. **Escape** hides the calendar.
 - **Right-click** a tray icon: context menu (Show, Preferences, Close, Exit).
 - **Preferences**: choose which icons are shown, their colours, the fiscal-calendar
   rules, and whether the app starts with Windows.
@@ -228,3 +228,8 @@ installed by running the new setup; a manual update check is included in the tra
 ## License
 
 Released under the [MIT License](LICENSE). Copyright (c) 2026 Christoph Ziegler.
+
+The calendar icon is original artwork under the same MIT license. Its editable
+source is `tools/New-CalendarIcon.ps1`; run it with PowerShell to regenerate the
+ICO at 16, 20, 24, 32, 48, 64, 128 and 256 pixels. It uses geometric shapes only,
+without external artwork or fonts. The numeric week icons are drawn by the app.

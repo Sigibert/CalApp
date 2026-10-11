@@ -80,7 +80,7 @@ namespace CalApp {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die This app is free to use within the Infineon Technologies AG company. Any further distribution has to be authorized by the publisher of the program. ähnelt.
+        ///   Returns the application's MIT license information.
         /// </summary>
         public static string Licence {
             get {
