@@ -8,7 +8,7 @@ namespace CalApp
     {
         public ApplicationLifetimeWindow()
         {
-            Text = "Calendar Week Info";
+            Text = "CalApp.UpdateOwner";
             ShowInTaskbar = false;
             var unused = Handle;
         }

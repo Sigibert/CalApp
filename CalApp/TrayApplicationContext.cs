@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using CalApp.Config;
 using CalApp.DateFunctions;
 using CalApp.Preferences;
+using CalApp.Localization;
 
 namespace CalApp
 {
@@ -13,18 +14,20 @@ namespace CalApp
         private readonly Func<DateTime> clock;
         private readonly Timer refreshTimer = new Timer();
         private readonly ApplicationLifetimeWindow lifetimeWindow = new ApplicationLifetimeWindow();
-        private readonly TrayIcons trayIcons = new TrayIcons();
+        private readonly TrayIcons trayIcons;
         private CalendarForm calendarForm;
         private Form activeDialog;
         private DateTime lastRefreshHour;
         private bool disposed;
 
         public TrayApplicationContext() : this(new SettingsController(SettingsStore.CreateDefault(),
-            new StartupRegistration(), Application.ExecutablePath)) { }
+            new StartupRegistration(), Application.ExecutablePath), persistentIcons: true) { }
 
-        internal TrayApplicationContext(SettingsController controller, Func<DateTime> clock = null)
+        internal TrayApplicationContext(SettingsController controller, Func<DateTime> clock = null, bool persistentIcons = false)
         {
             settingsController = controller ?? throw new ArgumentNullException(nameof(controller));
+            AppText.UseLanguage(controller.Settings.Language);
+            trayIcons = new TrayIcons(persistentIcons);
             this.clock = clock ?? (() => DateTime.Now);
             lifetimeWindow.FormClosed += LifetimeWindowClosed;
             settingsController.Saved += SettingsSaved;
@@ -33,13 +36,14 @@ namespace CalApp
             trayIcons.CalendarHideRequested += HideCalendar;
             trayIcons.PreferencesRequested += ShowPreferences;
             trayIcons.ExitRequested += ExitApplication;
+            trayIcons.UpdatesRequested += ShowUpdates;
             DateTime now = this.clock();
             UpdateIcons(now);
             refreshTimer.Tick += RefreshTimer_Tick;
             refreshTimer.Interval = RefreshSchedule.GetInterval(now);
             refreshTimer.Start();
             if (controller.LoadWarning != null)
-                MessageBox.Show(lifetimeWindow, controller.LoadWarning, "Preferences", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(lifetimeWindow, controller.LoadWarning, AppText.Get("PreferencesForm"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         internal CalendarForm GetCalendar()
@@ -52,6 +56,7 @@ namespace CalApp
                 calendarForm.PreferencesRequested += ShowPreferences;
                 calendarForm.AboutRequested += ShowAbout;
                 calendarForm.ExitRequested += ExitApplication;
+                calendarForm.TodayRequested += SelectToday;
                 UpdateSelectedDate();
             }
             return calendarForm;
@@ -82,17 +87,28 @@ namespace CalApp
         {
             DateTime now = clock();
             if (RefreshSchedule.GetHour(now) != lastRefreshHour) UpdateIcons(now);
+            trayIcons.RetryRegistration();
             calendarForm?.RefreshToday(now);
             refreshTimer.Interval = RefreshSchedule.GetInterval(now);
         }
 
         private void SettingsSaved(object sender, EventArgs e)
         {
+            AppText.UseLanguage(settingsController.Settings.Language);
+            calendarForm?.ApplyLanguage();
             UpdateIcons(clock());
             UpdateSelectedDate();
         }
 
         private void CalendarDateChanged(object sender, EventArgs e) => UpdateSelectedDate();
+
+        private void SelectToday(object sender, EventArgs e)
+        {
+            DateTime now = clock();
+            calendarForm.RefreshToday(now);
+            calendarForm.SelectDate(now);
+            UpdateSelectedDate();
+        }
 
         private void ToggleCalendar(object sender, EventArgs e)
         {
@@ -119,8 +135,9 @@ namespace CalApp
         }
 
         private void ShowPreferences(object sender, EventArgs e)
-            => ShowDialog(() => new PreferencesForm(settingsController));
+            => ShowDialog(() => new PreferencesForm(settingsController, clock));
         private void ShowAbout(object sender, EventArgs e) => ShowDialog(() => new AboutForm());
+        private void ShowUpdates(object sender, EventArgs e) => ShowDialog(() => new UpdateForm());
 
         private bool ActivateDialog()
         {
@@ -158,6 +175,7 @@ namespace CalApp
                     calendarForm.PreferencesRequested -= ShowPreferences;
                     calendarForm.AboutRequested -= ShowAbout;
                     calendarForm.ExitRequested -= ExitApplication;
+                    calendarForm.TodayRequested -= SelectToday;
                     calendarForm.Dispose();
                 }
                 trayIcons.Dispose();

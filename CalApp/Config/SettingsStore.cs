@@ -6,6 +6,7 @@ using System.Linq;
 using System.Security;
 using System.Xml;
 using System.Xml.Serialization;
+using CalApp.Localization;
 
 namespace CalApp.Config
 {
@@ -17,7 +18,9 @@ namespace CalApp.Config
         private bool preserveBackup;
 
         public string FilePath { get; }
-        public string LoadWarning { get; private set; }
+        private string loadWarningKey;
+        private string loadWarningDetail;
+        public string LoadWarning => loadWarningKey == null ? null : AppText.Format(loadWarningKey, loadWarningDetail);
         public AppSettings Current => current.Clone();
 
         public SettingsStore(string filePath, string legacyRoot = null)
@@ -37,7 +40,7 @@ namespace CalApp.Config
         // Loading is explicit and always reads the file. There is no shared dirty flag.
         public AppSettings Load()
         {
-            LoadWarning = null;
+            loadWarningKey = null;
             preserveBackup = false;
             current = new AppSettings();
             if (File.Exists(FilePath))
@@ -54,7 +57,7 @@ namespace CalApp.Config
                 if (TryRead(FilePath + ".bak", out AppSettings backup))
                 {
                     current = backup;
-                    LoadWarning = "The preferences file could not be loaded. The last backup has been restored in memory. Apply preferences to save it again.";
+                    loadWarningKey = "BackupRestored";
                     return Current;
                 }
             }
@@ -67,14 +70,15 @@ namespace CalApp.Config
                 {
                     if (!TryRead(candidate, out AppSettings migrated)) continue;
                     current = migrated;
-                    LoadWarning = null;
+                    loadWarningKey = null;
                     // Leave the original file untouched; persist to the stable path on Apply.
                     return Current;
                 }
             }
             catch (Exception ex) when (IsStorageError(ex))
             {
-                LoadWarning = "Previous preferences could not be read: " + ex.Message;
+                loadWarningKey = "LegacyReadFailed";
+                loadWarningDetail = ex.Message;
             }
             return Current;
         }
@@ -96,28 +100,32 @@ namespace CalApp.Config
         {
             try
             {
-                using (var reader = XmlReader.Create(path, new XmlReaderSettings
-                {
-                    DtdProcessing = DtdProcessing.Prohibit,
-                    XmlResolver = null,
-                    MaxCharactersInDocument = 1024 * 1024
-                }))
-                {
-                    settings = (AppSettings)Serializer.Deserialize(reader);
-                }
-                if (settings == null) throw new InvalidOperationException("The preferences file is empty.");
-                // Old files may have disabled every icon; keep the app accessible.
-                if (!settings.StandardIcon && !settings.FiscalWeekIcon && !settings.CalendarWeekIcon)
-                    settings.StandardIcon = true;
-                settings.Validate();
+                settings = ReadSnapshot(path, true);
                 return true;
             }
             catch (Exception ex) when (IsStorageError(ex) || ex is InvalidOperationException || ex is ArgumentException || ex is XmlException)
             {
                 settings = null;
-                LoadWarning = "Preferences could not be loaded; default settings are in use: " + ex.Message;
+                loadWarningKey = "LoadFailed";
+                loadWarningDetail = ex.Message;
                 return false;
             }
+        }
+
+        internal static AppSettings ReadSnapshot(string path, bool normalizeLegacyIcons = false)
+        {
+            AppSettings settings;
+            using (var reader = XmlReader.Create(path, new XmlReaderSettings
+            {
+                DtdProcessing = DtdProcessing.Prohibit,
+                XmlResolver = null,
+                MaxCharactersInDocument = 1024 * 1024
+            })) settings = (AppSettings)Serializer.Deserialize(reader);
+            if (settings == null) throw new InvalidOperationException(AppText.Get("EmptyPreferences"));
+            if (normalizeLegacyIcons && !settings.StandardIcon && !settings.FiscalWeekIcon && !settings.CalendarWeekIcon)
+                settings.StandardIcon = true;
+            settings.Validate();
+            return settings;
         }
 
         // Write a complete file next to the destination before replacing it atomically.
@@ -143,7 +151,7 @@ namespace CalApp.Config
                     File.Move(temporary, FilePath);
                 current = saved;
                 preserveBackup = false;
-                LoadWarning = null;
+                loadWarningKey = null;
             }
             finally
             {

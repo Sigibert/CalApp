@@ -69,7 +69,7 @@ namespace CalApp
             this.buttonFiscalWeekIconColor.Name = "buttonFiscalWeekIconColor";
             this.buttonFiscalWeekIconColor.Size = new System.Drawing.Size(75, 23);
             this.buttonFiscalWeekIconColor.TabIndex = 5;
-            this.buttonFiscalWeekIconColor.Text = "Back";
+            this.buttonFiscalWeekIconColor.Text = "Color";
             this.buttonFiscalWeekIconColor.UseVisualStyleBackColor = true;
             this.buttonFiscalWeekIconColor.Click += new System.EventHandler(this.ButtonFiscalWeekIconColor_Click);
             // 
@@ -113,18 +113,18 @@ namespace CalApp
             this.buttonCalendarWeekIconColor.Name = "buttonCalendarWeekIconColor";
             this.buttonCalendarWeekIconColor.Size = new System.Drawing.Size(75, 23);
             this.buttonCalendarWeekIconColor.TabIndex = 6;
-            this.buttonCalendarWeekIconColor.Text = "Back";
+            this.buttonCalendarWeekIconColor.Text = "Color";
             this.buttonCalendarWeekIconColor.UseVisualStyleBackColor = true;
             this.buttonCalendarWeekIconColor.Click += new System.EventHandler(this.ButtonCalendarWeekIconColor_Click);
             //
             // checkBoxFiscalWeekAutoFore
             //
             this.checkBoxFiscalWeekAutoFore.AutoSize = true;
-            this.checkBoxFiscalWeekAutoFore.Location = new System.Drawing.Point(245, 60);
+            this.checkBoxFiscalWeekAutoFore.Location = new System.Drawing.Point(240, 60);
             this.checkBoxFiscalWeekAutoFore.Name = "checkBoxFiscalWeekAutoFore";
             this.checkBoxFiscalWeekAutoFore.Size = new System.Drawing.Size(72, 17);
             this.checkBoxFiscalWeekAutoFore.TabIndex = 23;
-            this.checkBoxFiscalWeekAutoFore.Text = "Auto text";
+            this.checkBoxFiscalWeekAutoFore.Text = "Auto contrast";
             this.checkBoxFiscalWeekAutoFore.UseVisualStyleBackColor = true;
             this.checkBoxFiscalWeekAutoFore.CheckedChanged += new System.EventHandler(this.CheckBoxFiscalWeekAutoFore_CheckedChanged);
             //
@@ -141,11 +141,11 @@ namespace CalApp
             // checkBoxCalendarWeekAutoFore
             //
             this.checkBoxCalendarWeekAutoFore.AutoSize = true;
-            this.checkBoxCalendarWeekAutoFore.Location = new System.Drawing.Point(245, 95);
+            this.checkBoxCalendarWeekAutoFore.Location = new System.Drawing.Point(240, 95);
             this.checkBoxCalendarWeekAutoFore.Name = "checkBoxCalendarWeekAutoFore";
             this.checkBoxCalendarWeekAutoFore.Size = new System.Drawing.Size(72, 17);
             this.checkBoxCalendarWeekAutoFore.TabIndex = 25;
-            this.checkBoxCalendarWeekAutoFore.Text = "Auto text";
+            this.checkBoxCalendarWeekAutoFore.Text = "Auto contrast";
             this.checkBoxCalendarWeekAutoFore.UseVisualStyleBackColor = true;
             this.checkBoxCalendarWeekAutoFore.CheckedChanged += new System.EventHandler(this.CheckBoxCalendarWeekAutoFore_CheckedChanged);
             //

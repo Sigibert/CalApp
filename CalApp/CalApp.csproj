@@ -66,12 +66,14 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\AppSettings.cs" />
     <Compile Include="Config\IconColors.cs" />
     <Compile Include="Config\SettingsStore.cs" />
     <Compile Include="Config\SettingsController.cs" />
+    <Compile Include="Config\SettingsTransfer.cs" />
     <Compile Include="DateFunctions\IsoCalendar.cs" />
     <Compile Include="DateFunctions\FiscalCalendar.cs" />
     <Compile Include="DateFunctions\WeekCalculator.cs" />
@@ -106,10 +108,18 @@
     <Compile Include="RefreshSchedule.cs" />
     <Compile Include="TrayApplicationContext.cs" />
     <Compile Include="TrayIcons.cs" />
+    <Compile Include="PersistentTrayIcon.cs" />
+    <Compile Include="TrayIconIdentity.cs" />
+    <Compile Include="Localization\AppText.cs" />
+    <Compile Include="Updates\ReleaseVersion.cs" />
+    <Compile Include="Updates\UpdateChecker.cs" />
+    <Compile Include="UpdateForm.cs" />
     <Compile Include="ApplicationLifetimeWindow.cs" />
     <EmbeddedResource Include="CalendarForm.resx">
       <DependentUpon>CalendarForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Localization\Strings.resx" />
+    <EmbeddedResource Include="Localization\Strings.de.resx" />
     <EmbeddedResource Include="PreferencesForm.resx">
       <DependentUpon>PreferencesForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -1,5 +1,6 @@
 using System;
 using Microsoft.Win32;
+using CalApp.Localization;
 
 namespace CalApp.Preferences
 {
@@ -24,7 +25,7 @@ namespace CalApp.Preferences
             {
                 using (RegistryKey key = Registry.CurrentUser.CreateSubKey(RunKey))
                 {
-                    if (key == null) throw new InvalidOperationException("The Windows startup registry key is unavailable.");
+                    if (key == null) throw new InvalidOperationException(AppText.Get("StartupUnavailable"));
                     if (value == null) key.DeleteValue(ValueName, false);
                     else key.SetValue(ValueName, value, RegistryValueKind.String);
                 }

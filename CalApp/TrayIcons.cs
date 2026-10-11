@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Windows.Forms;
 using CalApp.Config;
 using CalApp.DateFunctions;
+using CalApp.Localization;
 
 namespace CalApp
 {
@@ -11,9 +12,9 @@ namespace CalApp
     internal sealed class TrayIcons : IDisposable
     {
         private readonly ContextMenuStrip trayMenu = new ContextMenuStrip();
-        private readonly NotifyIcon standardTrayIcon = new NotifyIcon();
-        private readonly NotifyIcon fiscalWeekTrayIcon = new NotifyIcon();
-        private readonly NotifyIcon calendarWeekTrayIcon = new NotifyIcon();
+        private readonly PersistentTrayIcon standardTrayIcon;
+        private readonly PersistentTrayIcon fiscalWeekTrayIcon;
+        private readonly PersistentTrayIcon calendarWeekTrayIcon;
         private readonly Icon calendarIcon = (Icon)Resource.Calendar_Icon.Clone();
         private bool disposed;
 
@@ -22,20 +23,36 @@ namespace CalApp
         public event EventHandler CalendarHideRequested;
         public event EventHandler PreferencesRequested;
         public event EventHandler ExitRequested;
+        public event EventHandler UpdatesRequested;
 
-        public TrayIcons()
+        public TrayIcons(bool persistentIdentity = true)
         {
-            trayMenu.Items.Add(new ToolStripMenuItem("Exit", null, (sender, e) => ExitRequested?.Invoke(this, e)));
+            standardTrayIcon = new PersistentTrayIcon(Identity(TrayIconIdentity.Standard, persistentIdentity));
+            fiscalWeekTrayIcon = new PersistentTrayIcon(Identity(TrayIconIdentity.FiscalWeek, persistentIdentity));
+            calendarWeekTrayIcon = new PersistentTrayIcon(Identity(TrayIconIdentity.CalendarWeek, persistentIdentity));
+            trayMenu.Items.Add(new ToolStripMenuItem("", null, (sender, e) => ExitRequested?.Invoke(this, e)) { Name = "exitMenu" });
             trayMenu.Items.Add(new ToolStripSeparator());
-            trayMenu.Items.Add(new ToolStripMenuItem("Preferences", null, (sender, e) => PreferencesRequested?.Invoke(this, e)));
+            trayMenu.Items.Add(new ToolStripMenuItem("", null, (sender, e) => PreferencesRequested?.Invoke(this, e)) { Name = "preferencesMenu" });
+            trayMenu.Items.Add(new ToolStripMenuItem("", null, (sender, e) => UpdatesRequested?.Invoke(this, e)) { Name = "checkUpdatesMenu" });
             trayMenu.Items.Add(new ToolStripSeparator());
-            trayMenu.Items.Add(new ToolStripMenuItem("Show", null, (sender, e) => CalendarShowRequested?.Invoke(this, e)));
-            trayMenu.Items.Add(new ToolStripMenuItem("Close", null, (sender, e) => CalendarHideRequested?.Invoke(this, e)));
-            foreach (NotifyIcon tray in new[] { standardTrayIcon, fiscalWeekTrayIcon, calendarWeekTrayIcon })
+            trayMenu.Items.Add(new ToolStripMenuItem("", null, (sender, e) => CalendarShowRequested?.Invoke(this, e)) { Name = "trayShow" });
+            trayMenu.Items.Add(new ToolStripMenuItem("", null, (sender, e) => CalendarHideRequested?.Invoke(this, e)) { Name = "hideCalendarMenu" });
+            AppText.Translate(trayMenu);
+            foreach (PersistentTrayIcon tray in new[] { standardTrayIcon, fiscalWeekTrayIcon, calendarWeekTrayIcon })
             {
                 tray.ContextMenuStrip = trayMenu;
                 tray.MouseClick += Tray_MouseClick;
             }
+        }
+
+        private static Guid Identity(Guid identity, bool persistent) => persistent
+            ? TrayIconIdentity.ForExecutable(identity, Application.ExecutablePath) : Guid.NewGuid();
+
+        internal void RetryRegistration()
+        {
+            standardTrayIcon.RetryRegistration();
+            fiscalWeekTrayIcon.RetryRegistration();
+            calendarWeekTrayIcon.RetryRegistration();
         }
 
         private void Tray_MouseClick(object sender, MouseEventArgs e)
@@ -48,6 +65,7 @@ namespace CalApp
             if (disposed) throw new ObjectDisposedException(nameof(TrayIcons));
             if (settings == null) throw new ArgumentNullException(nameof(settings));
             if (weeks == null) throw new ArgumentNullException(nameof(weeks));
+            AppText.Translate(trayMenu);
             Color fiscalText = settings.FiscalWeekIconForeColorAuto
                 ? IconColors.GetTextColor(settings.FiscalWeekIconBackColor) : settings.FiscalWeekIconForeColor;
             Color calendarText = settings.CalendarWeekIconForeColorAuto
@@ -59,15 +77,15 @@ namespace CalApp
                 ReplaceIcon(calendarWeekTrayIcon, IconFactory.CreateText(weeks.CalendarWeek.ToString(CultureInfo.InvariantCulture),
                     settings.CalendarWeekIconBackColor, calendarText));
             if (settings.StandardIcon) ReplaceIcon(standardTrayIcon, IconFactory.Recolor(calendarIcon, settings.StandardIconColor));
-            fiscalWeekTrayIcon.Text = "Fiscal week " + weeks.Fiscal.Week + " (" + weeks.Fiscal.YearLabel + ")";
-            calendarWeekTrayIcon.Text = "Calendar week " + weeks.CalendarWeek;
+            fiscalWeekTrayIcon.Text = AppText.Format("FiscalWeekTip", weeks.Fiscal.Week, weeks.Fiscal.YearLabel);
+            calendarWeekTrayIcon.Text = AppText.Format("CalendarWeekTip", weeks.CalendarWeek);
             standardTrayIcon.Text = "Calendar Week Info";
             standardTrayIcon.Visible = settings.StandardIcon;
             fiscalWeekTrayIcon.Visible = settings.FiscalWeekIcon;
             calendarWeekTrayIcon.Visible = settings.CalendarWeekIcon;
         }
 
-        private static void ReplaceIcon(NotifyIcon tray, Icon replacement)
+        private static void ReplaceIcon(PersistentTrayIcon tray, Icon replacement)
         {
             Icon previous = tray.Icon;
             try { tray.Icon = replacement; }
@@ -79,7 +97,7 @@ namespace CalApp
         {
             if (disposed) return;
             disposed = true;
-            foreach (NotifyIcon tray in new[] { standardTrayIcon, fiscalWeekTrayIcon, calendarWeekTrayIcon })
+            foreach (PersistentTrayIcon tray in new[] { standardTrayIcon, fiscalWeekTrayIcon, calendarWeekTrayIcon })
             {
                 tray.Visible = false;
                 tray.MouseClick -= Tray_MouseClick;

@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics;
 using System.Reflection;
 using System.Windows.Forms;
+using CalApp.Localization;
 
 namespace CalApp
 {
@@ -10,14 +11,12 @@ namespace CalApp
         public AboutForm()
         {
             InitializeComponent();
-            authorLabel.Text = "Author: Christoph Ziegler";
+            AppText.Translate(this);
             var copyright = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyCopyrightAttribute>();
             copyrightLabel.Text = copyright?.Copyright ?? "";
-            versionLabel.Text = "Version: " + Application.ProductVersion;
-            contactLink.Text = "Contact";
+            versionLabel.Text = AppText.Format("Version", Application.ProductVersion);
             applicationInfoGroup.Text = Application.ProductName;
-            applicationInfoText.Text = Resource.Information;
-            licenseGroup.Text = "License Information";
+            applicationInfoText.Text = AppText.Get("ApplicationInfo");
             licenseText.Text = Resource.Licence;
         }
 
@@ -30,8 +29,8 @@ namespace CalApp
             }
             catch (Exception ex) when (ex is System.ComponentModel.Win32Exception || ex is InvalidOperationException)
             {
-                MessageBox.Show(this, "The email application could not be opened.\nContact: christophzieglerapps@outlook.com",
-                    "Contact", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, AppText.Get("EmailUnavailable"),
+                    AppText.Get("contactLink"), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

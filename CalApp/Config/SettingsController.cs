@@ -1,5 +1,6 @@
 using System;
 using CalApp.Preferences;
+using CalApp.Localization;
 
 namespace CalApp.Config
 {
@@ -11,6 +12,7 @@ namespace CalApp.Config
         public event EventHandler Saved;
 
         public AppSettings Settings => store.Current;
+        internal string SettingsFilePath => store.FilePath;
         public string LoadWarning => store.LoadWarning;
 
         public SettingsController(SettingsStore store, IStartupRegistration startup, string executablePath)
@@ -40,13 +42,22 @@ namespace CalApp.Config
                     try { startup.Command = previousCommand; }
                     catch (Exception restoreError)
                     {
-                        throw new InvalidOperationException("Preferences could not be saved and the previous Windows startup setting could not be restored. Check both settings.",
+                        throw new InvalidOperationException(AppText.Get("StartupRollbackFailed"),
                             new AggregateException(saveError, restoreError));
                     }
                 }
                 throw;
             }
             Saved?.Invoke(this, EventArgs.Empty);
+        }
+
+        // Installation updates the executable path without rewriting user preferences.
+        public void SynchronizeStartup()
+        {
+            if (LoadWarning != null)
+                throw new InvalidOperationException(AppText.Get("StartupUnsafe"));
+            string desiredCommand = Settings.StartWithWindows ? "\"" + executablePath + "\"" : null;
+            if (startup.Command != desiredCommand) startup.Command = desiredCommand;
         }
     }
 }

@@ -18,12 +18,18 @@ week number, and refreshes itself automatically at the top of every hour and at 
 - **Per-icon colours** — pick a background per icon; the text colour is either
   auto-contrasted for you or picked manually.
 - **Start with Windows** — optional autostart via the current-user `Run` key.
+- **English and German** — automatic selection from the Windows display language,
+  with a saved manual override in Preferences.
+- **Fiscal-year preview** — see the year start and first-week dates before applying a rule.
+- **Import/export** — transfer calendar rules, colors, language and startup preferences between computers.
+- **Update check** — compare published GitHub releases and open the matching setup or ZIP download.
 - **Auto-refresh** — updates on the hour and at midnight without any interaction.
   A one-minute heartbeat also catches wake from sleep and clock changes.
 
 ## Requirements
 
 - Windows
+- The installer supports Windows 10 and later.
 - .NET Framework 4.7.2 or a compatible later .NET Framework runtime
 - For development: Visual Studio with **.NET desktop development** and the
   **.NET Framework 4.7.2 targeting pack**
@@ -43,6 +49,7 @@ To build the solution and run the regression tests from PowerShell:
 ```powershell
 .\build.ps1
 .\build.ps1 -UiTests -Package
+.\build.ps1 -UiTests -Package -Installer
 ```
 
 If PowerShell's local execution policy blocks the script, you can run this trusted
@@ -57,6 +64,18 @@ NuGet packages. `-UiTests` additionally exercises WinForms controls and tray cle
 on a Windows desktop; it briefly creates tray icons but does not edit your personal
 preferences or Windows startup entries. `-Package` creates a ZIP under `artifacts`
 with the application, configuration file, documentation, and license.
+
+`-Installer` also produces `artifacts\CalApp-Setup-<version>.exe`. It requires
+Inno Setup 6 or newer; use `-InnoSetupCompiler <path-to-ISCC.exe>` if necessary.
+The installer version comes from the same `Version.props` as the app and ZIP.
+Native tray-registration tests require access to the actual Windows desktop/Explorer;
+run `-UiTests` in your normal user session, not an isolated sandbox desktop.
+
+After building the release, `installer\Test-Installer.ps1` runs a real install,
+update and uninstall under an isolated artifacts folder with a separate test AppId.
+It skips app launch, shortcuts and startup synchronization, checks program-file
+replacement and verifies that personal preferences and autostart are unchanged.
+Pass `-InnoSetupCompiler <path-to-ISCC.exe>` when needed. Test logs remain in artifacts.
 
 You can also run the test executable after building `CalApp.sln`:
 
@@ -76,10 +95,75 @@ settings migration and recovery, save failures, automatic contrast, and UI behav
 
 ## Usage
 
+### Installation and updates
+
+Run `CalApp-Setup-<version>.exe`. Setup installs for the current user without
+administrator rights at `%LOCALAPPDATA%\Programs\CalApp\CalendarWeekInfo.exe`.
+Later versions replace the program in this same folder. Setup closes the running
+installed app gracefully and starts the new version. When moving from the old ZIP
+release, exit that old app in its tray menu first. Setup creates a Start menu entry
+and an entry under Windows' installed apps.
+
+Setup preserves preferences and synchronizes the Windows startup path according to
+the saved Start with Windows setting. With no preferences, the app's existing default
+(enabled) applies. If preferences cannot be read safely, startup is left unchanged
+and setup reports that you should check it in Preferences.
+
+Each tray icon has a permanent GUID at the installed path. Portable and development
+copies use separate identities so they cannot claim the installed app's GUIDs.
+Windows retains control of visibility and ordering; one final rearrangement may be
+needed when switching from the ZIP release. Later updates retain the same executable
+path and icon identities. Explorer restarts re-register the icons.
+
+Uninstall removes the program, shortcut and its own autostart entry, but retains your
+preferences for a future reinstall. ZIP packages remain available for portable use;
+keep the same extraction path if you want stable tray identities.
+
+### Using the app
+
+In Preferences, choose **System (automatic)**, **Deutsch** or **English** under
+Language. System mode uses German for a German Windows display language and English
+otherwise. Apply updates app labels, menus, tooltips and messages immediately, without
+changing the selected calendar date. Existing preference files default to System.
+Cancel discards an unapplied language choice; Default selects System again.
+
+The native Windows calendar gets its month/day strings from Windows' regional
+settings, independently of the app language. Standard Windows dialogs, such as the
+color picker, also use Windows' own language.
+
+English resources are built into the EXE; the German pack is
+`de\CalendarWeekInfo.resources.dll`. Keep that folder alongside the EXE when using
+the ZIP package; setup installs and updates it automatically.
+
 - **Left-click** a tray icon: show/hide the info panel.
+- **Today** or **Ctrl+T**: select the current date again. **Escape** hides the calendar.
 - **Right-click** a tray icon: context menu (Show, Preferences, Close, Exit).
 - **Preferences**: choose which icons are shown, their colours, the fiscal-calendar
   rules, and whether the app starts with Windows.
+
+The fiscal-calendar preview shows the start and first week of the fiscal year that
+contains today's date under the currently selected rules. It updates while editing,
+including when week 1 starts in the previous calendar year. It does not save changes.
+
+Import loads an XML settings file into Preferences for review. Apply or OK saves the
+imported values, including the Start with Windows and Language choices; Cancel discards
+unapplied changes. Export writes the values currently displayed in Preferences to a
+separate XML file without applying them. Exports cannot overwrite active preferences
+or their backup. Imports reject invalid calendar/language values, unsafe XML, oversized
+documents and configurations with no visible tray icon.
+
+### Checking for updates
+
+Choose Check for updates in the tray menu. The check runs only on request, uses GitHub's
+release API without credentials and keeps the UI responsive. Stable versions consider
+stable releases; RC versions also consider prereleases. The newest matching release is
+selected by semantic version, with preference for the setup asset and then the ZIP.
+Open download launches your browser; run the downloaded setup to install the update.
+No background installation is performed.
+
+If GitHub is unavailable, rate-limited or the release data is private, the dialog explains
+the result and offers the releases page in your browser. Private repositories require
+GitHub sign-in in the browser; automatic release comparison requires public release data.
 
 Settings are stored per-user at the stable, version-independent location:
 
@@ -95,7 +179,8 @@ Writes replace the file atomically and keep the previous valid save as
 backup, or default settings if no readable backup exists. At least one tray icon
 always remains enabled.
 
-Autostart is changed only when you apply preferences. If saving fails, the previous
+Autostart is changed when you apply preferences, and its program path is synchronized
+by setup during installation and updates. If saving preferences fails, the previous
 startup entry is restored and the dialog stays open. Automatic text color chooses
 black or white for contrast; a manually selected color is retained when automatic
 color is temporarily enabled.
@@ -117,23 +202,28 @@ Release numbering and the preparation process are documented in [VERSIONING.md](
 
 - `TrayApplicationContext`: owns settings, refresh, application lifetime, and window coordination.
 - `TrayIcons`: owns the tray icons and their context menu, with the established 16-pixel number rendering.
+- `PersistentTrayIcon`, `TrayIconIdentity`: native GUID registration, input and Explorer recovery.
+- `Localization`: language choice and resource lookup; `Strings.resx` contains English,
+  `Strings.de.resx` contains German. Add translations to both files using the same keys.
 - `ApplicationLifetimeWindow`: a lightweight hidden dialog owner that receives Windows shutdown messages.
 - `CalendarForm`: a calendar view created on demand; displays results and reports user requests.
 - `PreferencesForm`, `AboutForm`: settings and application information dialogs.
+- `UpdateForm`, `Updates`: asynchronous release lookup, version comparison and download selection.
 - `DateFunctions/WeekCalculator`: calculates a typed `WeekInfo` result for the selected date.
 - `DateFunctions/IsoCalendar`, `FiscalCalendar`: calendar algorithms, independent of the UI.
 - `Config`: settings snapshots, persistence, apply coordination, and icon contrast.
+- `Config/SettingsTransfer`: validated XML import and atomic export, separate from Apply.
 - `Preferences/StartupRegistration`: the current-user Windows startup entry.
 - `CalApp.Tests`: regression runner with isolated temporary settings and fake startup entries.
 
 The stable 1.1 baseline is kept on `master` and tagged `v1.1.0`. The compatible 1.2
-architecture update is developed on `dev` as `1.2.0-rc.1`; existing preferences and week-icon
+architecture update is developed on `dev` as `1.2.0-rc.4`; existing preferences and week-icon
 appearance remain compatible. Startup, background refresh, and preferences never
 create the calendar view. Closing the calendar hides it; Exit ends the tray application.
 
 Before distributing a release internally, check the actual desktop behavior at your
-company's DPI settings and after sleep, logoff, and a Windows restart. The ZIP is a
-portable release, without an installer or automatic updates.
+company's DPI settings and after sleep, logoff, and a Windows restart. Updates are
+installed by running the new setup; a manual update check is included in the tray menu.
 
 ## License
 

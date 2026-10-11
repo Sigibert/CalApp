@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using System.Xml.Serialization;
+using CalApp.Localization;
 
 namespace CalApp.Config
 {
@@ -18,6 +19,7 @@ namespace CalApp.Config
         public bool FiscalWeekIconForeColorAuto { get; set; } = true;
         public bool CalendarWeekIconForeColorAuto { get; set; } = true;
         public bool StartWithWindows { get; set; } = true;
+        public AppLanguage Language { get; set; } = AppLanguage.System;
 
         [XmlIgnore] public Color StandardIconColor { get; set; } = Color.FromArgb(0, 93, 169);
         [XmlIgnore] public Color FiscalWeekIconForeColor { get; set; } = Color.Yellow;
@@ -43,12 +45,14 @@ namespace CalApp.Config
             if (!Enum.IsDefined(typeof(DayOfWeek), FirstDayOfFiscalWeek)
                 || !Enum.IsDefined(typeof(FiscalWeekRule), FiscalWeekRule)
                 || !Enum.IsDefined(typeof(Month), FirstFiscalMonth))
-                throw new ArgumentException("The fiscal calendar settings are invalid.");
+                throw new ArgumentException(AppText.Get("InvalidCalendar"));
+            if (!Enum.IsDefined(typeof(AppLanguage), Language))
+                throw new ArgumentException(AppText.Get("InvalidLanguage"));
             if (!StandardIcon && !FiscalWeekIcon && !CalendarWeekIcon)
-                throw new ArgumentException("At least one tray icon must remain visible.");
+                throw new ArgumentException(AppText.Get("IconRequired"));
             if (StandardIconColor.IsEmpty || FiscalWeekIconForeColor.IsEmpty || FiscalWeekIconBackColor.IsEmpty
                 || CalendarWeekIconForeColor.IsEmpty || CalendarWeekIconBackColor.IsEmpty)
-                throw new ArgumentException("An icon color is missing.");
+                throw new ArgumentException(AppText.Get("ColorMissing"));
         }
     }
 }

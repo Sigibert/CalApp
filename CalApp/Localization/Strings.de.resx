@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="PreferencesForm" xml:space="preserve"><value>Einstellungen</value></data>
+  <data name="CalendarForm" xml:space="preserve"><value>Calendar Week Info</value></data>
+  <data name="AboutForm" xml:space="preserve"><value>Über CalApp</value></data>
+  <data name="iconsGroup" xml:space="preserve"><value>Symbole</value></data>
+  <data name="checkBoxStandardIcon" xml:space="preserve"><value>Standardsymbol</value></data>
+  <data name="checkBoxFiscalWeekIcon" xml:space="preserve"><value>Geschäftswoche</value></data>
+  <data name="checkBoxCalendarWeekIcon" xml:space="preserve"><value>Kalenderwoche</value></data>
+  <data name="buttonStandardIconColor" xml:space="preserve"><value>Farbe</value></data>
+  <data name="buttonFiscalWeekIconColor" xml:space="preserve"><value>Farbe</value></data>
+  <data name="buttonCalendarWeekIconColor" xml:space="preserve"><value>Farbe</value></data>
+  <data name="checkBoxFiscalWeekAutoFore" xml:space="preserve"><value>Auto-Kontrast</value></data>
+  <data name="checkBoxCalendarWeekAutoFore" xml:space="preserve"><value>Auto-Kontrast</value></data>
+  <data name="buttonFiscalWeekIconForeColor" xml:space="preserve"><value>Text</value></data>
+  <data name="buttonCalendarWeekIconForeColor" xml:space="preserve"><value>Text</value></data>
+  <data name="fiscalCalendarGroup" xml:space="preserve"><value>Geschäftskalender</value></data>
+  <data name="firstFiscalMonthLabel" xml:space="preserve"><value>Erster Geschäftsmonat:</value></data>
+  <data name="firstFiscalWeekdayLabel" xml:space="preserve"><value>Erster Wochentag:</value></data>
+  <data name="fiscalWeekRuleLabel" xml:space="preserve"><value>Erste Woche:</value></data>
+  <data name="startupGroup" xml:space="preserve"><value>Autostart</value></data>
+  <data name="checkBoxStartup" xml:space="preserve"><value>Mit Windows starten</value></data>
+  <data name="languageGroup" xml:space="preserve"><value>Sprache</value></data>
+  <data name="languageLabel" xml:space="preserve"><value>Anzeigesprache:</value></data>
+  <data name="buttonOk" xml:space="preserve"><value>OK</value></data>
+  <data name="buttonCancel" xml:space="preserve"><value>Abbrechen</value></data>
+  <data name="buttonApply" xml:space="preserve"><value>Übernehmen</value></data>
+  <data name="buttonReset" xml:space="preserve"><value>Zurücksetzen</value></data>
+  <data name="buttonDefault" xml:space="preserve"><value>Standard</value></data>
+  <data name="fileMenu" xml:space="preserve"><value>Datei</value></data>
+  <data name="hideCalendarMenu" xml:space="preserve"><value>Schließen</value></data>
+  <data name="preferencesMenu" xml:space="preserve"><value>Einstellungen</value></data>
+  <data name="exitMenu" xml:space="preserve"><value>Beenden</value></data>
+  <data name="aboutMenu" xml:space="preserve"><value>Über CalApp</value></data>
+  <data name="dateSelectionGroup" xml:space="preserve"><value>Datum auswählen</value></data>
+  <data name="trayShow" xml:space="preserve"><value>Anzeigen</value></data>
+  <data name="CalendarWeek" xml:space="preserve"><value>Kalenderwoche: {0}</value></data>
+  <data name="FiscalWeek" xml:space="preserve"><value>Geschäftswoche: {0}</value></data>
+  <data name="FiscalYear" xml:space="preserve"><value>Geschäftsjahr: {0}</value></data>
+  <data name="CalendarWeekTip" xml:space="preserve"><value>Kalenderwoche {0}</value></data>
+  <data name="FiscalWeekTip" xml:space="preserve"><value>Geschäftswoche {0} ({1})</value></data>
+  <data name="FullWeek" xml:space="preserve"><value>Volle Woche (7 Tage)</value></data>
+  <data name="OneDay" xml:space="preserve"><value>Mindestens 1 Tag</value></data>
+  <data name="MinimumDays" xml:space="preserve"><value>Mindestens {0} Tage</value></data>
+  <data name="SystemLanguage" xml:space="preserve"><value>System (automatisch)</value></data>
+  <data name="authorLabel" xml:space="preserve"><value>Autor: Christoph Ziegler</value></data>
+  <data name="Version" xml:space="preserve"><value>Version: {0}</value></data>
+  <data name="contactLink" xml:space="preserve"><value>Kontakt</value></data>
+  <data name="licenseGroup" xml:space="preserve"><value>Lizenzinformationen</value></data>
+  <data name="closeButton" xml:space="preserve"><value>OK</value></data>
+  <data name="ApplicationInfo" xml:space="preserve"><value>Zeigt Kalender- und Geschäftswochen im Windows-Infobereich. Der Geschäftskalender ist einstellbar; Kalenderwochen folgen ISO 8601.</value></data>
+  <data name="EmailUnavailable" xml:space="preserve"><value>Das E-Mail-Programm konnte nicht geöffnet werden.
+Kontakt: christophzieglerapps@outlook.com</value></data>
+  <data name="ApplyFailed" xml:space="preserve"><value>Die Einstellungen konnten nicht übernommen werden:
+{0}</value></data>
+  <data name="AlreadyRunning" xml:space="preserve"><value>Calendar Week Info läuft bereits.</value></data>
+  <data name="AlreadyRunningTitle" xml:space="preserve"><value>Bereits gestartet</value></data>
+  <data name="BackupRestored" xml:space="preserve"><value>Die Einstellungen konnten nicht geladen werden. Die letzte Sicherung wird verwendet. Bitte die Einstellungen übernehmen, um sie erneut zu speichern.</value></data>
+  <data name="LegacyReadFailed" xml:space="preserve"><value>Frühere Einstellungen konnten nicht gelesen werden:
+{0}</value></data>
+  <data name="LoadFailed" xml:space="preserve"><value>Die Einstellungen konnten nicht geladen werden. Standardwerte werden verwendet:
+{0}</value></data>
+  <data name="InvalidCalendar" xml:space="preserve"><value>Die Einstellungen des Geschäftskalenders sind ungültig.</value></data>
+  <data name="IconRequired" xml:space="preserve"><value>Mindestens ein Tray-Symbol muss sichtbar bleiben.</value></data>
+  <data name="ColorMissing" xml:space="preserve"><value>Eine Symbolfarbe fehlt.</value></data>
+  <data name="InvalidLanguage" xml:space="preserve"><value>Die gewählte Sprache ist ungültig.</value></data>
+  <data name="StartupRollbackFailed" xml:space="preserve"><value>Die Einstellungen konnten nicht gespeichert und der bisherige Autostart nicht wiederhergestellt werden. Bitte beides prüfen.</value></data>
+  <data name="StartupUnsafe" xml:space="preserve"><value>Die Einstellungen konnten nicht sicher gelesen werden. Der Windows-Autostart wurde nicht geändert.</value></data>
+  <data name="StartupUnavailable" xml:space="preserve"><value>Der Registrierungsschlüssel für den Windows-Autostart ist nicht verfügbar.</value></data>
+  <data name="EmptyPreferences" xml:space="preserve"><value>Die Einstellungsdatei ist leer.</value></data>
+  <data name="todayButton" xml:space="preserve"><value>Heute</value></data>
+  <data name="FiscalPreview" xml:space="preserve"><value>Geschäftsjahr {0}: Beginn {1}
+Woche 1: {1} – {2}</value></data>
+  <data name="transferGroup" xml:space="preserve"><value>Einstellungen übertragen</value></data>
+  <data name="importButton" xml:space="preserve"><value>Importieren…</value></data>
+  <data name="exportButton" xml:space="preserve"><value>Exportieren…</value></data>
+  <data name="transferHint" xml:space="preserve"><value>Importierte Werte prüfen und mit „Übernehmen“ speichern.</value></data>
+  <data name="ImportTitle" xml:space="preserve"><value>Einstellungen importieren</value></data>
+  <data name="ExportTitle" xml:space="preserve"><value>Einstellungen exportieren</value></data>
+  <data name="SettingsFileFilter" xml:space="preserve"><value>Einstellungsdateien (*.xml)|*.xml|Alle Dateien (*.*)|*.*</value></data>
+  <data name="ImportFailed" xml:space="preserve"><value>Die Einstellungen konnten nicht importiert werden:
+{0}</value></data>
+  <data name="ExportFailed" xml:space="preserve"><value>Die Einstellungen konnten nicht exportiert werden:
+{0}</value></data>
+  <data name="Exported" xml:space="preserve"><value>Die angezeigten Einstellungen wurden exportiert.</value></data>
+  <data name="ExportActiveFile" xml:space="preserve"><value>Bitte eine separate Exportdatei wählen. Die aktiven Einstellungen und ihre Sicherung dürfen nicht überschrieben werden.</value></data>
+  <data name="checkUpdatesMenu" xml:space="preserve"><value>Nach Updates suchen…</value></data>
+  <data name="UpdateForm" xml:space="preserve"><value>CalApp-Updates</value></data>
+  <data name="CurrentVersion" xml:space="preserve"><value>Installierte Version: {0}</value></data>
+  <data name="openReleases" xml:space="preserve"><value>GitHub-Releases öffnen</value></data>
+  <data name="downloadUpdate" xml:space="preserve"><value>Download öffnen</value></data>
+  <data name="UpdateChecking" xml:space="preserve"><value>Veröffentlichte Versionen werden geprüft…</value></data>
+  <data name="UpdateFound" xml:space="preserve"><value>Version {0} ist verfügbar. Den Download öffnen und das Setup für das Update starten.</value></data>
+  <data name="UpdateCurrent" xml:space="preserve"><value>Es wurde keine neuere passende Version gefunden.</value></data>
+  <data name="UpdatePrivate" xml:space="preserve"><value>Die Release-Daten sind nicht öffentlich abrufbar. Bei einem privaten Repository die Releases im Browser öffnen und bei GitHub anmelden.</value></data>
+  <data name="UpdateLimited" xml:space="preserve"><value>GitHub hat die Abfrage vorübergehend abgelehnt. Später erneut versuchen oder die Releases im Browser öffnen.</value></data>
+  <data name="UpdateUnavailable" xml:space="preserve"><value>Die Update-Prüfung konnte nicht abgeschlossen werden. Verbindung prüfen oder die GitHub-Releases im Browser öffnen.</value></data>
+  <data name="UpdateTimeout" xml:space="preserve"><value>Die Update-Prüfung hat zu lange gedauert. Erneut versuchen oder die GitHub-Releases öffnen.</value></data>
+  <data name="BrowserFailed" xml:space="preserve"><value>Der Browser konnte nicht geöffnet werden. Bitte github.com/Sigibert/CalApp/releases aufrufen.</value></data>
+</root>
