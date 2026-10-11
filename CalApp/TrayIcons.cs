@@ -79,7 +79,7 @@ namespace CalApp
             if (settings.StandardIcon) ReplaceIcon(standardTrayIcon, IconFactory.Recolor(calendarIcon, settings.StandardIconColor));
             fiscalWeekTrayIcon.Text = AppText.Format("FiscalWeekTip", weeks.Fiscal.Week, weeks.Fiscal.YearLabel);
             calendarWeekTrayIcon.Text = AppText.Format("CalendarWeekTip", weeks.CalendarWeek);
-            standardTrayIcon.Text = "Calendar Week Info";
+            standardTrayIcon.Text = "WeekTrayInfo";
             standardTrayIcon.Visible = settings.StandardIcon;
             fiscalWeekTrayIcon.Visible = settings.FiscalWeekIcon;
             calendarWeekTrayIcon.Visible = settings.CalendarWeekIcon;

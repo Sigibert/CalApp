@@ -141,7 +141,7 @@ namespace CalApp
             this.applicationInfoGroup.Size = new System.Drawing.Size(300, 86);
             this.applicationInfoGroup.TabIndex = 1;
             this.applicationInfoGroup.TabStop = false;
-            this.applicationInfoGroup.Text = "Calendar Week Info";
+            this.applicationInfoGroup.Text = "WeekTrayInfo";
             // 
             // applicationInfoText
             // 

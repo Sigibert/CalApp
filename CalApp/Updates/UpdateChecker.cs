@@ -38,7 +38,7 @@ namespace CalApp.Updates
         {
             using (var request = new HttpRequestMessage(HttpMethod.Get, "https://api.github.com/repos/Sigibert/CalApp/releases?per_page=100"))
             {
-                request.Headers.UserAgent.ParseAdd("CalApp/" + current);
+                request.Headers.UserAgent.ParseAdd("WeekTrayInfo/" + current);
                 request.Headers.Accept.ParseAdd("application/vnd.github+json");
                 using (HttpResponseMessage response = await client.SendAsync(request, cancellation).ConfigureAwait(false))
                 {
@@ -56,11 +56,12 @@ namespace CalApp.Updates
                             .OrderByDescending(item => item.Version).ToArray();
                         if (candidates.Length == 0) return new UpdateResult(null, ReleasesPage);
                         var latest = candidates[0];
-                        string setupName = "CalApp-Setup-" + latest.Version + ".exe";
-                        string zipName = "CalendarWeekInfo-" + latest.Version + ".zip";
+                        string[] names = { "WeekTrayInfo-Setup-" + latest.Version + ".exe",
+                            "CalApp-Setup-" + latest.Version + ".exe", "WeekTrayInfo-" + latest.Version + ".zip",
+                            "CalendarWeekInfo-" + latest.Version + ".zip" };
                         Asset[] assets = latest.Release.Assets ?? new Asset[0];
-                        Asset asset = assets.FirstOrDefault(a => a != null && a.Name == setupName && SafeReleaseUri(a.Url) != null)
-                            ?? assets.FirstOrDefault(a => a != null && a.Name == zipName && SafeReleaseUri(a.Url) != null);
+                        Asset asset = names.Select(name => assets.FirstOrDefault(a => a != null && a.Name == name && SafeReleaseUri(a.Url) != null))
+                            .FirstOrDefault(a => a != null);
                         Uri download = asset == null ? SafeReleaseUri(latest.Release.Url) ?? ReleasesPage : SafeReleaseUri(asset.Url);
                         return new UpdateResult(latest.Version, download);
                     }

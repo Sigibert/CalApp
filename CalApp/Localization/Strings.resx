@@ -5,8 +5,8 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="PreferencesForm" xml:space="preserve"><value>Preferences</value></data>
-  <data name="CalendarForm" xml:space="preserve"><value>Calendar Week Info</value></data>
-  <data name="AboutForm" xml:space="preserve"><value>About CalApp</value></data>
+  <data name="CalendarForm" xml:space="preserve"><value>WeekTrayInfo</value></data>
+  <data name="AboutForm" xml:space="preserve"><value>About WeekTrayInfo</value></data>
   <data name="iconsGroup" xml:space="preserve"><value>Icons</value></data>
   <data name="checkBoxStandardIcon" xml:space="preserve"><value>Standard icon</value></data>
   <data name="checkBoxFiscalWeekIcon" xml:space="preserve"><value>Fiscal week</value></data>
@@ -52,12 +52,14 @@
   <data name="contactLink" xml:space="preserve"><value>Contact</value></data>
   <data name="licenseGroup" xml:space="preserve"><value>License information</value></data>
   <data name="closeButton" xml:space="preserve"><value>OK</value></data>
-  <data name="ApplicationInfo" xml:space="preserve"><value>Shows calendar and fiscal weeks in the Windows notification area. The fiscal calendar is configurable; calendar weeks follow ISO 8601.</value></data>
+  <data name="ApplicationInfo" xml:space="preserve"><value>Calendar and fiscal weeks at a glance.
+
+Shows calendar and fiscal weeks in the Windows notification area. The fiscal calendar is configurable; calendar weeks follow ISO 8601.</value></data>
   <data name="EmailUnavailable" xml:space="preserve"><value>The email application could not be opened.
 Contact: christophzieglerapps@outlook.com</value></data>
   <data name="ApplyFailed" xml:space="preserve"><value>Preferences could not be applied:
 {0}</value></data>
-  <data name="AlreadyRunning" xml:space="preserve"><value>Calendar Week Info is already running.</value></data>
+  <data name="AlreadyRunning" xml:space="preserve"><value>WeekTrayInfo is already running.</value></data>
   <data name="AlreadyRunningTitle" xml:space="preserve"><value>Already running</value></data>
   <data name="BackupRestored" xml:space="preserve"><value>The preferences file could not be loaded. The last backup has been restored in memory. Apply preferences to save it again.</value></data>
   <data name="LegacyReadFailed" xml:space="preserve"><value>Previous preferences could not be read:
@@ -72,7 +74,6 @@ Contact: christophzieglerapps@outlook.com</value></data>
   <data name="StartupUnsafe" xml:space="preserve"><value>Preferences could not be read safely. Windows startup was left unchanged.</value></data>
   <data name="StartupUnavailable" xml:space="preserve"><value>The Windows startup registry key is unavailable.</value></data>
   <data name="EmptyPreferences" xml:space="preserve"><value>The preferences file is empty.</value></data>
-  <data name="todayButton" xml:space="preserve"><value>Today</value></data>
   <data name="FiscalPreview" xml:space="preserve"><value>Fiscal year {0}: starts {1}
 Week 1: {1} – {2}</value></data>
   <data name="transferGroup" xml:space="preserve"><value>Import / export settings</value></data>
@@ -89,7 +90,7 @@ Week 1: {1} – {2}</value></data>
   <data name="Exported" xml:space="preserve"><value>The displayed settings have been exported.</value></data>
   <data name="ExportActiveFile" xml:space="preserve"><value>Choose a separate export file. The active preferences and backup must not be overwritten.</value></data>
   <data name="checkUpdatesMenu" xml:space="preserve"><value>Check for updates…</value></data>
-  <data name="UpdateForm" xml:space="preserve"><value>CalApp updates</value></data>
+  <data name="UpdateForm" xml:space="preserve"><value>WeekTrayInfo updates</value></data>
   <data name="CurrentVersion" xml:space="preserve"><value>Installed version: {0}</value></data>
   <data name="openReleases" xml:space="preserve"><value>Open GitHub releases</value></data>
   <data name="downloadUpdate" xml:space="preserve"><value>Open download</value></data>

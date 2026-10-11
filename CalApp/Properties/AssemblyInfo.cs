@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // Allgemeine Informationen über eine Assembly werden über die folgenden
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die einer Assembly zugeordnet sind.
-[assembly: AssemblyTitle("Calendar Week Info")]
-[assembly: AssemblyDescription("Application for Calendar Week Information")]
+[assembly: AssemblyTitle("WeekTrayInfo")]
+[assembly: AssemblyDescription("Kalender- und Geschäftswochen auf einen Blick")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ChristophZieglerHomeLab")]
-[assembly: AssemblyProduct("Calendar Week Info")]
+[assembly: AssemblyProduct("WeekTrayInfo")]
 [assembly: AssemblyCopyright("Copyright ©  2026 by Christoph Ziegler")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

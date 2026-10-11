@@ -31,7 +31,7 @@ if ($Package) {
     $version = [Diagnostics.FileVersionInfo]::GetVersionInfo($applicationPath).ProductVersion
     $artifactDirectory = Join-Path $projectRoot 'artifacts'
     New-Item -ItemType Directory -Path $artifactDirectory -Force | Out-Null
-    $archivePath = Join-Path $artifactDirectory "CalendarWeekInfo-$version.zip"
+    $archivePath = Join-Path $artifactDirectory "WeekTrayInfo-$version.zip"
     $packageFiles = @($applicationPath, "$applicationPath.config",
         (Join-Path $projectRoot 'README.md'), (Join-Path $projectRoot 'CHANGELOG.md'),
         (Join-Path $projectRoot 'VERSIONING.md'), (Join-Path $projectRoot 'LICENSE'),
@@ -59,5 +59,5 @@ if ($Installer) {
     $versionInfo = [Diagnostics.FileVersionInfo]::GetVersionInfo($applicationPath)
     & $InnoSetupCompiler '/Qp' "/DAppVersion=$($versionInfo.ProductVersion)" "/DNumericVersion=$($versionInfo.FileVersion)" (Join-Path $projectRoot 'installer\CalApp.iss')
     if ($LASTEXITCODE -ne 0) { throw "Installer build failed with exit code $LASTEXITCODE." }
-    Write-Host "Installer: $(Join-Path $projectRoot "artifacts\CalApp-Setup-$($versionInfo.ProductVersion).exe")"
+    Write-Host "Installer: $(Join-Path $projectRoot "artifacts\WeekTrayInfo-Setup-$($versionInfo.ProductVersion).exe")"
 }

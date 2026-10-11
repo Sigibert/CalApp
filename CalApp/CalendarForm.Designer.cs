@@ -196,7 +196,7 @@ namespace CalApp
             this.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Calendar Week Info";
+            this.Text = "WeekTrayInfo";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CalendarForm_FormClosing);
             this.Move += new System.EventHandler(this.CalendarForm_Move);
             this.mainMenu.ResumeLayout(false);

@@ -11,8 +11,8 @@
   #define OutputName "CalApp-Setup-Test"
 #else
   #define InstallerId "{{30E02D1A-52C6-4953-AAC9-6D5C1AF764CC}"
-  #define InstallerName "CalApp"
-  #define OutputName "CalApp-Setup-" + AppVersion
+  #define InstallerName "WeekTrayInfo"
+  #define OutputName "WeekTrayInfo-Setup-" + AppVersion
 #endif
 
 [Setup]
@@ -61,19 +61,22 @@ Source: "..\LICENSE"; DestDir: "{app}"; Flags: ignoreversion
 
 #ifndef TestBuild
 [Icons]
-Name: "{userprograms}\CalApp"; Filename: "{app}\CalendarWeekInfo.exe"; WorkingDir: "{app}"
+Name: "{userprograms}\WeekTrayInfo"; Filename: "{app}\CalendarWeekInfo.exe"; WorkingDir: "{app}"
+
+[InstallDelete]
+Type: files; Name: "{userprograms}\CalApp.lnk"
 
 [Run]
 Filename: "{app}\CalendarWeekInfo.exe"; Flags: nowait
 #endif
 
 [CustomMessages]
-english.CloseCalApp=Please exit the running Calendar Week Info app using its tray menu, then retry.
-german.CloseCalApp=Bitte Calendar Week Info im Tray-Menü über Exit beenden und erneut versuchen.
+english.CloseCalApp=Please exit the running WeekTrayInfo (formerly Calendar Week Info) app using its tray menu, then retry.
+german.CloseCalApp=Bitte WeekTrayInfo (bisher Calendar Week Info) über das Tray-Menü beenden und erneut versuchen.
 english.StartupFailed=The app was installed, but Windows startup could not be updated safely. Please check Start with Windows in Preferences.
 german.StartupFailed=Die App wurde installiert, aber der Autostart konnte nicht sicher aktualisiert werden. Bitte Start with Windows in den Einstellungen prüfen.
-english.FrameworkRequired=CalApp requires .NET Framework 4.7.2 or newer. Please install it before running this setup.
-german.FrameworkRequired=CalApp benötigt .NET Framework 4.7.2 oder neuer. Bitte vor der Installation einrichten.
+english.FrameworkRequired=WeekTrayInfo requires .NET Framework 4.7.2 or newer. Please install it before running this setup.
+german.FrameworkRequired=WeekTrayInfo benötigt .NET Framework 4.7.2 oder neuer. Bitte vor der Installation einrichten.
 
 [Code]
 const

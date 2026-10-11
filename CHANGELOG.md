@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.2.0
+
+- Release the new tray architecture, per-user installer, persistent tray identities, English/German language packs, update check, fiscal preview and settings transfer as a stable version.
+- Rename the app to WeekTrayInfo: "Kalender- und Geschäftswochen auf einen Blick".
+- Retain install path, executable, settings, autostart and tray identities for update compatibility.
+- Use WeekTrayInfo names for setup and portable downloads; accept both new and legacy asset names during update checks.
+- Replace the calendar icon with original MIT artwork and include its editable drawing script.
+- Remove the redundant Today button; retain the native calendar's Today line and Ctrl+T.
+- Keep the GitHub repository URL unchanged for earlier update checks.
+
 ## 1.2.0-rc.4
 
 - Add a manual update check to the tray menu with semantic version comparison and direct setup/ZIP links.

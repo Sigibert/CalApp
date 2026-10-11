@@ -709,6 +709,9 @@ namespace CalApp.Tests
             UpdateResult stable = Lookup("1.1.0", json);
             Equal("1.2.0", stable.Version.ToString());
             Equal(true, stable.Download.AbsolutePath.EndsWith("CalApp-Setup-1.2.0.exe"));
+            string renamed = json.Replace("CalApp-Setup-", "WeekTrayInfo-Setup-").Replace("CalendarWeekInfo-", "WeekTrayInfo-");
+            Equal(true, Lookup("1.1.0", renamed).Download.AbsolutePath.EndsWith("WeekTrayInfo-Setup-1.2.0.exe"));
+            Equal(true, Lookup("1.1.0", renamed.Replace("WeekTrayInfo-Setup-1.2.0.exe", "unrelated.exe")).Download.AbsolutePath.EndsWith("WeekTrayInfo-1.2.0.zip"));
             Equal("2.0.0-rc.1", Lookup("1.2.0-rc.4", json).Version.ToString());
             Equal(null, Lookup("1.2.0", "[]").Version);
             Equal(UpdateChecker.ReleasesPage, Lookup("1.1.0", "[{\"tag_name\":\"1.2.0\",\"html_url\":\"https://example.com/evil\"}]").Download);

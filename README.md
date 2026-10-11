@@ -1,4 +1,8 @@
-# Calendar Week Info
+# WeekTrayInfo
+
+**Kalender- und Geschäftswochen auf einen Blick.**
+
+*Calendar and fiscal weeks at a glance.* Formerly Calendar Week Info / CalApp.
 
 A lightweight Windows system-tray app that shows the current **calendar week** (ISO 8601)
 and **fiscal week** at a glance, and opens a small calendar popup on click.
@@ -65,7 +69,7 @@ on a Windows desktop; it briefly creates tray icons but does not edit your perso
 preferences or Windows startup entries. `-Package` creates a ZIP under `artifacts`
 with the application, configuration file, documentation, and license.
 
-`-Installer` also produces `artifacts\CalApp-Setup-<version>.exe`. It requires
+`-Installer` also produces `artifacts\WeekTrayInfo-Setup-<version>.exe`. It requires
 Inno Setup 6 or newer; use `-InnoSetupCompiler <path-to-ISCC.exe>` if necessary.
 The installer version comes from the same `Version.props` as the app and ZIP.
 Native tray-registration tests require access to the actual Windows desktop/Explorer;
@@ -97,8 +101,13 @@ settings migration and recovery, save failures, automatic contrast, and UI behav
 
 ### Installation and updates
 
-Run `CalApp-Setup-<version>.exe`. Setup installs for the current user without
+Run `WeekTrayInfo-Setup-<version>.exe`. Setup installs for the current user without
 administrator rights at `%LOCALAPPDATA%\Programs\CalApp\CalendarWeekInfo.exe`.
+The legacy installation path, executable name, settings location, installer AppId,
+startup entry and tray identities are intentionally retained across the rename.
+The GitHub repository stays at `Sigibert/CalApp` so earlier update checks keep working.
+Public downloads use `WeekTrayInfo-Setup-<version>.exe` and `WeekTrayInfo-<version>.zip`.
+Older prereleases can open the release page to download the renamed installer.
 Later versions replace the program in this same folder. Setup closes the running
 installed app gracefully and starts the new version. When moving from the old ZIP
 release, exit that old app in its tray menu first. Setup creates a Start menu entry
@@ -216,14 +225,15 @@ Release numbering and the preparation process are documented in [VERSIONING.md](
 - `Preferences/StartupRegistration`: the current-user Windows startup entry.
 - `CalApp.Tests`: regression runner with isolated temporary settings and fake startup entries.
 
-The stable 1.1 baseline is kept on `master` and tagged `v1.1.0`. The compatible 1.2
-architecture update is developed on `dev` as `1.2.0-rc.4`; existing preferences and week-icon
-appearance remain compatible. Startup, background refresh, and preferences never
+The stable release is 1.2.0 on `master`, tagged `v1.2.0`. Development continues on
+`dev`. The previous 1.1 baseline remains available as `v1.1.0`; existing preferences
+and week-icon appearance remain compatible. Startup, background refresh, and preferences never
 create the calendar view. Closing the calendar hides it; Exit ends the tray application.
 
 Before distributing a release internally, check the actual desktop behavior at your
 company's DPI settings and after sleep, logoff, and a Windows restart. Updates are
 installed by running the new setup; a manual update check is included in the tray menu.
+EXE and setup are currently unsigned; no publicly trusted signing certificate is configured.
 
 ## License
 

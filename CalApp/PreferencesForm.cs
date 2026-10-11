@@ -216,7 +216,7 @@ namespace CalApp
         private void ExportButton_Click(object sender, EventArgs e)
         {
             using (var dialog = new SaveFileDialog { Title = AppText.Get("ExportTitle"), Filter = AppText.Get("SettingsFileFilter"),
-                DefaultExt = "xml", AddExtension = true, FileName = "CalApp-Settings.xml", OverwritePrompt = true })
+                DefaultExt = "xml", AddExtension = true, FileName = "WeekTrayInfo-Settings.xml", OverwritePrompt = true })
             {
                 if (dialog.ShowDialog(this) != DialogResult.OK) return;
                 try

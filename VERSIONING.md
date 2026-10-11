@@ -1,6 +1,6 @@
-# CalApp versioning
+# WeekTrayInfo versioning
 
-CalApp uses `MAJOR.MINOR.PATCH`, following Semantic Versioning with compatibility
+WeekTrayInfo uses `MAJOR.MINOR.PATCH`, following Semantic Versioning with compatibility
 defined by its user behavior and saved preferences.
 
 | Change | Example |
@@ -36,7 +36,7 @@ Give corrections a new version instead. Keep `master` for stable releases and
 `Version.props` is the source of the release version. The build derives the numeric
 .NET assembly/file version automatically: `1.2.0-rc.1` becomes `1.2.0.0` internally.
 The complete release version appears in the About dialog and ZIP filename.
-The fourth zero is a technical .NET field and is not a separate CalApp release.
+The fourth zero is a technical .NET field and is not a separate WeekTrayInfo release.
 
 The existing `v1.1.0` baseline retains its historical `1.1.0.0` metadata. Starting
 with 1.2 release candidates, the displayed product version uses three positions.

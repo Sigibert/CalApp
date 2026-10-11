@@ -24,7 +24,7 @@ namespace CalApp
         {
             try
             {
-                Process.Start(new ProcessStartInfo("mailto:christophzieglerapps@outlook.com?subject=Calendar%20Week%20Info")
+                Process.Start(new ProcessStartInfo("mailto:christophzieglerapps@outlook.com?subject=WeekTrayInfo")
                 { UseShellExecute = true });
             }
             catch (Exception ex) when (ex is System.ComponentModel.Win32Exception || ex is InvalidOperationException)

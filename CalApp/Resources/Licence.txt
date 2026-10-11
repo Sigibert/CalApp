@@ -1,1 +1,1 @@
-Calendar Week Info is free and open-source software, released under the MIT License. You are free to use, copy, modify, and distribute it. See the LICENSE file included with the source for the full terms.
+WeekTrayInfo is free and open-source software, released under the MIT License. You are free to use, copy, modify, and distribute it. See the LICENSE file included with the source for the full terms.
