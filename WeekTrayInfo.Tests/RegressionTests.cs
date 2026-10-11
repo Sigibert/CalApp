@@ -75,6 +75,7 @@ namespace WeekTrayInfo.Tests
                 Run("Installer closes the lifetime owner without creating a calendar", InstallerShutdown);
                 Run("Apply switches language immediately and preserves calendar selection", LanguageSwitch);
                 Run("Calendar keyboard shortcuts use the application clock", CalendarNavigation);
+                Run("Calendar menu opens from button and keyboard and dispatches actions", CalendarMenuNavigation);
                 Run("Fiscal preview follows pending rules and fiscal-year boundaries", FiscalPreview);
                 Run("Imported settings remain pending; export does not apply changes", TransferControls);
                 Run("Update dialog handles results, private access and closing during lookup", UpdateDialog);
@@ -632,7 +633,9 @@ namespace WeekTrayInfo.Tests
                     Invoke(preferences, "ButtonApply_Click");
                     bool german = language == AppLanguage.German;
                     Equal(german ? "Einstellungen" : "Preferences", preferences.Text);
-                    Equal(german ? "Datei" : "File", Field<ToolStripMenuItem>(calendar, "fileMenu").Text);
+                    Equal(german ? "Einstellungen …" : "Preferences …", Field<ToolStripMenuItem>(calendar, "calendarPreferencesMenu").Text);
+                    Equal(german ? "Über WeekTrayInfo …" : "About WeekTrayInfo …", Field<ToolStripMenuItem>(calendar, "calendarAboutMenu").Text);
+                    Equal(german ? "App beenden" : "Exit app", Field<ToolStripMenuItem>(calendar, "calendarExitMenu").Text);
                     Equal(german ? "Kalenderwoche: 1" : "Calendar week: 1", Field<Label>(calendar, "calendarWeekLabel").Text);
                     Equal(selected, calendar.SelectedDate);
                     Equal(language, new SettingsStore(path).Load().Language);
@@ -783,6 +786,36 @@ namespace WeekTrayInfo.Tests
                 Equal(false, calendar.IsDisposed);
             }
         });
+
+        private static void CalendarMenuNavigation()
+        {
+            using (var calendar = new CalendarForm())
+            {
+                calendar.SelectDate(new DateTime(2026, 10, 11));
+                calendar.DisplayWeeks(WeekCalculator.GetWeeks(calendar.SelectedDate, DayOfWeek.Saturday, FiscalWeekRule.FirstFourDayWeek, Month.October));
+                calendar.Show(); Application.DoEvents();
+                var button = Field<Button>(calendar, "moreButton");
+                var menu = Field<ContextMenuStrip>(calendar, "calendarMenu");
+                var layout = Field<TableLayoutPanel>(calendar, "calendarLayout");
+                Equal(true, Field<Label>(calendar, "calendarWeekLabel").Right <= button.Left);
+                Equal(true, button.Right <= layout.ClientSize.Width);
+                int preferences = 0, about = 0, exit = 0;
+                calendar.PreferencesRequested += (sender, args) => preferences++;
+                calendar.AboutRequested += (sender, args) => about++;
+                calendar.ExitRequested += (sender, args) => exit++;
+                button.PerformClick(); Equal(true, menu.Visible);
+                menu.Items[0].PerformClick(); Equal(1, preferences);
+                menu.Close();
+                var processKey = typeof(CalendarForm).GetMethod("ProcessCmdKey", BindingFlags.Instance | BindingFlags.NonPublic);
+                Message message = Message.Create(IntPtr.Zero, 0, IntPtr.Zero, IntPtr.Zero);
+                Equal(true, (bool)processKey.Invoke(calendar, new object[] { message, Keys.Alt | Keys.M }));
+                Equal(true, menu.Visible);
+                menu.Items[1].PerformClick(); Equal(1, about);
+                menu.Close();
+                menu.Items[3].PerformClick(); Equal(1, exit);
+                Equal(false, calendar.IsDisposed);
+            }
+        }
 
         private static void FiscalPreview() => WithDirectory(directory =>
         {

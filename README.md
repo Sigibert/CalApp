@@ -143,6 +143,7 @@ English resources are built into the EXE; the German pack is
 the ZIP package; setup installs and updates it automatically.
 
 - **Left-click** a tray icon: show/hide the info panel.
+- **Calendar menu (⋯)** or **Alt+M**: Preferences, About WeekTrayInfo, or Exit app. Dialogs open centered over the calendar. The window's X hides the calendar; Exit app also removes its tray icons.
 - Click the calendar's built-in **Today** line or press **Ctrl+T** to select the current date again. **Escape** hides the calendar.
 - **Right-click** a tray icon: context menu (Show, Preferences, Close, Exit).
 - **Preferences**: choose which icons are shown, their colours, the fiscal-calendar
@@ -222,7 +223,7 @@ Release numbering and the preparation process are documented in [VERSIONING.md](
 - `Preferences/StartupRegistration`: the current-user Windows startup entry.
 - `WeekTrayInfo.Tests`: regression runner with isolated temporary settings and fake startup entries.
 
-The stable release is 2.0.0 on `master`, tagged `v2.0.0`. Development continues on
+The stable release is 2.0.1 on `master`, tagged `v2.0.1`. Development continues on
 `dev`. Version 2.0 starts a clean WeekTrayInfo installation with new application,
 settings and tray identities. Earlier CalApp / Calendar Week Info releases remain
 available as historical tags. Exit and uninstall an earlier installed version before

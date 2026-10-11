@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.1
+
+- Replace the calendar's File and help menus with a compact, accessible ellipsis button and Alt+M shortcut.
+- Offer Preferences, About WeekTrayInfo and explicit Exit app actions in English and German.
+- Center dialogs over the calendar when opened from it; keep screen centering when opened from the tray.
+- Use automatic layout to keep week labels and the menu button apart, and the original calendar icon in the window title.
+
 ## 2.0.0
 
 - Establish WeekTrayInfo as a clean application identity for the first rollout.

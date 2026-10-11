@@ -25,10 +25,15 @@ namespace WeekTrayInfo
         internal void ApplyLanguage()
         {
             AppText.Translate(this);
+            AppText.Translate(calendarMenu);
+            moreButton.AccessibleName = AppText.Get("CalendarMenuLabel");
+            menuToolTip.SetToolTip(moreButton, moreButton.AccessibleName);
         }
 
         protected override bool ProcessCmdKey(ref Message message, Keys keyData)
         {
+            if (calendarMenu.Visible) return base.ProcessCmdKey(ref message, keyData);
+            if (keyData == (Keys.Alt | Keys.M)) { OpenMenu(); return true; }
             if (keyData == Keys.Escape) { Hide(); return true; }
             if (keyData == (Keys.Control | Keys.T)) { TodayRequested?.Invoke(this, EventArgs.Empty); return true; }
             return base.ProcessCmdKey(ref message, keyData);
@@ -67,7 +72,11 @@ namespace WeekTrayInfo
 
         private void DateCalendar_DateChanged(object sender, DateRangeEventArgs e)
             => DateSelectionChanged?.Invoke(this, EventArgs.Empty);
-        private void HideCalendarMenu_Click(object sender, EventArgs e) => Hide();
+        private void DateCalendar_SizeChanged(object sender, EventArgs e)
+            => dateSelectionGroup.Size = new System.Drawing.Size(dateCalendar.Right + 6, dateCalendar.Bottom + 6);
+        private void MoreButton_Click(object sender, EventArgs e) => OpenMenu();
+        private void OpenMenu() => calendarMenu.Show(moreButton,
+            new System.Drawing.Point(moreButton.Width, moreButton.Height), ToolStripDropDownDirection.BelowLeft);
         private void PreferencesMenu_Click(object sender, EventArgs e) => PreferencesRequested?.Invoke(this, e);
         private void ExitMenu_Click(object sender, EventArgs e) => ExitRequested?.Invoke(this, e);
         private void AboutMenu_Click(object sender, EventArgs e) => AboutRequested?.Invoke(this, e);

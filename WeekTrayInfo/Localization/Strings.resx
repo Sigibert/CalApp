@@ -36,6 +36,10 @@
   <data name="preferencesMenu" xml:space="preserve"><value>Preferences</value></data>
   <data name="exitMenu" xml:space="preserve"><value>Exit</value></data>
   <data name="aboutMenu" xml:space="preserve"><value>About</value></data>
+  <data name="CalendarMenuLabel" xml:space="preserve"><value>Open menu (Alt+M)</value></data>
+  <data name="calendarPreferencesMenu" xml:space="preserve"><value>Preferences …</value></data>
+  <data name="calendarAboutMenu" xml:space="preserve"><value>About WeekTrayInfo …</value></data>
+  <data name="calendarExitMenu" xml:space="preserve"><value>Exit app</value></data>
   <data name="dateSelectionGroup" xml:space="preserve"><value>Date selection</value></data>
   <data name="trayShow" xml:space="preserve"><value>Show</value></data>
   <data name="CalendarWeek" xml:space="preserve"><value>Calendar week: {0}</value></data>

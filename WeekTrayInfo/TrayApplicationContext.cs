@@ -153,7 +153,12 @@ namespace WeekTrayInfo
             using (Form dialog = createDialog())
             {
                 activeDialog = dialog;
-                try { dialog.ShowDialog(calendarForm != null && calendarForm.Visible ? (Form)calendarForm : lifetimeWindow); }
+                try
+                {
+                    Form owner = calendarForm != null && calendarForm.Visible ? (Form)calendarForm : lifetimeWindow;
+                    dialog.StartPosition = owner == calendarForm ? FormStartPosition.CenterParent : FormStartPosition.CenterScreen;
+                    dialog.ShowDialog(owner);
+                }
                 finally { activeDialog = null; }
             }
         }

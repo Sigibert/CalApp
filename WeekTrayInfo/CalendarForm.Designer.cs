@@ -2,225 +2,129 @@ namespace WeekTrayInfo
 {
     partial class CalendarForm
     {
-        /// <summary>
-        /// Erforderliche Designervariable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
-
-        /// <summary>
-        /// Verwendete Ressourcen bereinigen.
-        /// </summary>
-        /// <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
+        private System.ComponentModel.IContainer components;
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
+            if (disposing) components?.Dispose();
             base.Dispose(disposing);
         }
 
-        #region Vom Windows Form-Designer generierter Code
-
-        /// <summary>
-        /// Erforderliche Methode für die Designerunterstützung.
-        /// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
-        /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CalendarForm));
-            this.calendarWeekLabel = new System.Windows.Forms.Label();
-            this.fiscalWeekLabel = new System.Windows.Forms.Label();
-            this.fiscalYearLabel = new System.Windows.Forms.Label();
-            this.dateCalendar = new System.Windows.Forms.MonthCalendar();
-            this.mainMenu = new System.Windows.Forms.MenuStrip();
-            this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.hideCalendarMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.preferencesMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.fileSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.exitMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.dateSelectionGroup = new System.Windows.Forms.GroupBox();
-            this.helpMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.mainMenu.SuspendLayout();
-            this.dateSelectionGroup.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // calendarWeekLabel
-            // 
-            this.calendarWeekLabel.AutoSize = true;
-            this.calendarWeekLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.calendarWeekLabel.Location = new System.Drawing.Point(6, 32);
-            this.calendarWeekLabel.Margin = new System.Windows.Forms.Padding(3);
-            this.calendarWeekLabel.Name = "calendarWeekLabel";
-            this.calendarWeekLabel.Padding = new System.Windows.Forms.Padding(3);
-            this.calendarWeekLabel.Size = new System.Drawing.Size(57, 26);
-            this.calendarWeekLabel.TabIndex = 1;
-            this.calendarWeekLabel.Text = "calendarWeekLabel";
-            // 
-            // fiscalWeekLabel
-            // 
-            this.fiscalWeekLabel.AutoSize = true;
-            this.fiscalWeekLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.fiscalWeekLabel.Location = new System.Drawing.Point(6, 64);
-            this.fiscalWeekLabel.Margin = new System.Windows.Forms.Padding(3);
-            this.fiscalWeekLabel.Name = "fiscalWeekLabel";
-            this.fiscalWeekLabel.Padding = new System.Windows.Forms.Padding(3);
-            this.fiscalWeekLabel.Size = new System.Drawing.Size(57, 26);
-            this.fiscalWeekLabel.TabIndex = 2;
-            this.fiscalWeekLabel.Text = "fiscalWeekLabel";
-            // 
-            // fiscalYearLabel
-            // 
-            this.fiscalYearLabel.AutoSize = true;
-            this.fiscalYearLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.fiscalYearLabel.Location = new System.Drawing.Point(6, 96);
-            this.fiscalYearLabel.Margin = new System.Windows.Forms.Padding(3);
-            this.fiscalYearLabel.Name = "fiscalYearLabel";
-            this.fiscalYearLabel.Padding = new System.Windows.Forms.Padding(3);
-            this.fiscalYearLabel.Size = new System.Drawing.Size(57, 26);
-            this.fiscalYearLabel.TabIndex = 3;
-            this.fiscalYearLabel.Text = "fiscalYearLabel";
-            // 
-            // dateCalendar
-            // 
-            this.dateCalendar.FirstDayOfWeek = System.Windows.Forms.Day.Monday;
-            this.dateCalendar.Location = new System.Drawing.Point(6, 19);
-            this.dateCalendar.Margin = new System.Windows.Forms.Padding(3);
-            this.dateCalendar.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dateCalendar.Name = "dateCalendar";
-            this.dateCalendar.ShowWeekNumbers = true;
-            this.dateCalendar.TabIndex = 5;
-            this.dateCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.DateCalendar_DateChanged);
-            // 
-            // mainMenu
-            // 
-            this.mainMenu.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.mainMenu.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileMenu,
-            this.helpMenu});
-            this.mainMenu.Location = new System.Drawing.Point(3, 0);
-            this.mainMenu.Margin = new System.Windows.Forms.Padding(3);
-            this.mainMenu.Name = "mainMenu";
-            this.mainMenu.Padding = new System.Windows.Forms.Padding(3);
-            this.mainMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.mainMenu.Size = new System.Drawing.Size(273, 26);
-            this.mainMenu.TabIndex = 6;
-            this.mainMenu.Text = "mainMenu";
-            // 
-            // fileMenu
-            // 
-            this.fileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.hideCalendarMenu,
-            this.preferencesMenu,
-            this.fileSeparator,
-            this.exitMenu});
-            this.fileMenu.Name = "fileMenu";
-            this.fileMenu.Size = new System.Drawing.Size(41, 20);
-            this.fileMenu.Text = "File";
-            // 
-            // hideCalendarMenu
-            // 
-            this.hideCalendarMenu.Name = "hideCalendarMenu";
-            this.hideCalendarMenu.Size = new System.Drawing.Size(180, 22);
-            this.hideCalendarMenu.Text = "Close";
-            this.hideCalendarMenu.Click += new System.EventHandler(this.HideCalendarMenu_Click);
-            // 
-            // preferencesMenu
-            // 
-            this.preferencesMenu.Name = "preferencesMenu";
-            this.preferencesMenu.Size = new System.Drawing.Size(180, 22);
-            this.preferencesMenu.Text = "Preferences";
-            this.preferencesMenu.Click += new System.EventHandler(this.PreferencesMenu_Click);
-            // 
-            // fileSeparator
-            // 
-            this.fileSeparator.Name = "fileSeparator";
-            this.fileSeparator.Size = new System.Drawing.Size(177, 6);
-            // 
-            // exitMenu
-            // 
-            this.exitMenu.Name = "exitMenu";
-            this.exitMenu.Size = new System.Drawing.Size(180, 22);
-            this.exitMenu.Text = "Exit";
-            this.exitMenu.Click += new System.EventHandler(this.ExitMenu_Click);
-            // 
-            // dateSelectionGroup
-            // 
-            this.dateSelectionGroup.Controls.Add(this.dateCalendar);
-            this.dateSelectionGroup.Location = new System.Drawing.Point(6, 128);
-            this.dateSelectionGroup.Name = "dateSelectionGroup";
-            this.dateSelectionGroup.Size = new System.Drawing.Size(212, 186);
-            this.dateSelectionGroup.TabIndex = 7;
-            this.dateSelectionGroup.TabStop = false;
-            this.dateSelectionGroup.Text = "Date Selection";
-            // 
-            // helpMenu
-            // 
-            this.helpMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutMenu});
-            this.helpMenu.Name = "helpMenu";
-            this.helpMenu.Size = new System.Drawing.Size(27, 20);
-            this.helpMenu.Text = "?";
-            // 
-            // aboutMenu
-            // 
-            this.aboutMenu.Name = "aboutMenu";
-            this.aboutMenu.Size = new System.Drawing.Size(180, 22);
-            this.aboutMenu.Text = "Info";
-            this.aboutMenu.Click += new System.EventHandler(this.AboutMenu_Click);
-            // 
-            // CalendarForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(279, 377);
-            this.Controls.Add(this.dateSelectionGroup);
-            this.Controls.Add(this.mainMenu);
-            this.Controls.Add(this.fiscalYearLabel);
-            this.Controls.Add(this.fiscalWeekLabel);
-            this.Controls.Add(this.calendarWeekLabel);
-            this.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Location = new System.Drawing.Point(15, 15);
-            this.MainMenuStrip = this.mainMenu;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "CalendarForm";
-            this.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "WeekTrayInfo";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CalendarForm_FormClosing);
-            this.Move += new System.EventHandler(this.CalendarForm_Move);
-            this.mainMenu.ResumeLayout(false);
-            this.mainMenu.PerformLayout();
-            this.dateSelectionGroup.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            components = new System.ComponentModel.Container();
+            calendarWeekLabel = new System.Windows.Forms.Label();
+            fiscalWeekLabel = new System.Windows.Forms.Label();
+            fiscalYearLabel = new System.Windows.Forms.Label();
+            dateCalendar = new System.Windows.Forms.MonthCalendar();
+            dateSelectionGroup = new System.Windows.Forms.GroupBox();
+            calendarLayout = new System.Windows.Forms.TableLayoutPanel();
+            moreButton = new System.Windows.Forms.Button();
+            calendarMenu = new System.Windows.Forms.ContextMenuStrip(components);
+            calendarPreferencesMenu = new System.Windows.Forms.ToolStripMenuItem();
+            calendarAboutMenu = new System.Windows.Forms.ToolStripMenuItem();
+            calendarExitMenu = new System.Windows.Forms.ToolStripMenuItem();
+            menuToolTip = new System.Windows.Forms.ToolTip(components);
+            SuspendLayout();
+            calendarLayout.SuspendLayout();
+            dateSelectionGroup.SuspendLayout();
 
+            calendarLayout.Name = "calendarLayout";
+            calendarLayout.AutoSize = true;
+            calendarLayout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            calendarLayout.ColumnCount = 2;
+            calendarLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.AutoSize));
+            calendarLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            calendarLayout.RowCount = 4;
+            for (int row = 0; row < 4; row++)
+                calendarLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize));
+            calendarLayout.Location = new System.Drawing.Point(6, 6);
+            calendarLayout.Margin = new System.Windows.Forms.Padding(0);
+            var labels = new[] { calendarWeekLabel, fiscalWeekLabel, fiscalYearLabel };
+            var names = new[] { "calendarWeekLabel", "fiscalWeekLabel", "fiscalYearLabel" };
+            for (int row = 0; row < labels.Length; row++)
+            {
+                labels[row].Name = names[row];
+                labels[row].AutoSize = true;
+                labels[row].Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+                labels[row].Padding = new System.Windows.Forms.Padding(3);
+                labels[row].Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+                calendarLayout.Controls.Add(labels[row], 0, row);
+                if (row > 0) calendarLayout.SetColumnSpan(labels[row], 2);
+            }
+            moreButton.Name = "moreButton";
+            moreButton.Text = "\u22ef";
+            moreButton.Font = new System.Drawing.Font("Segoe UI", 16F);
+            moreButton.Size = new System.Drawing.Size(30, 28);
+            moreButton.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
+            moreButton.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            moreButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            moreButton.FlatAppearance.BorderSize = 0;
+            moreButton.BackColor = System.Drawing.SystemColors.ControlLight;
+            moreButton.TabIndex = 0;
+            moreButton.Click += MoreButton_Click;
+            calendarLayout.Controls.Add(moreButton, 1, 0);
+            calendarMenu.Name = "calendarMenu";
+            calendarMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            calendarPreferencesMenu.Name = "calendarPreferencesMenu";
+            calendarPreferencesMenu.Click += PreferencesMenu_Click;
+            calendarAboutMenu.Name = "calendarAboutMenu";
+            calendarAboutMenu.Click += AboutMenu_Click;
+            calendarExitMenu.Name = "calendarExitMenu";
+            calendarExitMenu.Click += ExitMenu_Click;
+            calendarMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+                calendarPreferencesMenu, calendarAboutMenu, new System.Windows.Forms.ToolStripSeparator(), calendarExitMenu });
+            dateCalendar.Name = "dateCalendar";
+            dateCalendar.Location = new System.Drawing.Point(6, 19);
+            dateCalendar.FirstDayOfWeek = System.Windows.Forms.Day.Monday;
+            dateCalendar.MinDate = new System.DateTime(1900, 1, 1);
+            dateCalendar.ShowWeekNumbers = true;
+            dateCalendar.TabIndex = 1;
+            dateCalendar.DateChanged += DateCalendar_DateChanged;
+            dateCalendar.SizeChanged += DateCalendar_SizeChanged;
+            dateSelectionGroup.Name = "dateSelectionGroup";
+            dateSelectionGroup.Size = new System.Drawing.Size(dateCalendar.Right + 6, dateCalendar.Bottom + 6);
+            dateSelectionGroup.Margin = new System.Windows.Forms.Padding(0);
+            dateSelectionGroup.Padding = new System.Windows.Forms.Padding(3, 3, 6, 6);
+            dateSelectionGroup.Controls.Add(dateCalendar);
+            calendarLayout.Controls.Add(dateSelectionGroup, 0, 3);
+            calendarLayout.SetColumnSpan(dateSelectionGroup, 2);
+
+            AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            AutoSize = true;
+            AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            BackColor = System.Drawing.SystemColors.Window;
+            ForeColor = System.Drawing.SystemColors.WindowText;
+            Controls.Add(calendarLayout);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            Icon = Resource.CalendarIcon;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "CalendarForm";
+            Padding = new System.Windows.Forms.Padding(6);
+            ShowInTaskbar = false;
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "WeekTrayInfo";
+            FormClosing += CalendarForm_FormClosing;
+            Move += CalendarForm_Move;
+            dateSelectionGroup.ResumeLayout(false);
+            calendarLayout.ResumeLayout(false);
+            calendarLayout.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
-        #endregion
         private System.Windows.Forms.Label calendarWeekLabel;
         private System.Windows.Forms.Label fiscalWeekLabel;
         private System.Windows.Forms.Label fiscalYearLabel;
         private System.Windows.Forms.MonthCalendar dateCalendar;
-        private System.Windows.Forms.MenuStrip mainMenu;
-        private System.Windows.Forms.ToolStripMenuItem fileMenu;
-        private System.Windows.Forms.ToolStripMenuItem preferencesMenu;
-        private System.Windows.Forms.ToolStripMenuItem hideCalendarMenu;
-        private System.Windows.Forms.ToolStripMenuItem exitMenu;
-        private System.Windows.Forms.ToolStripSeparator fileSeparator;
         private System.Windows.Forms.GroupBox dateSelectionGroup;
-        private System.Windows.Forms.ToolStripMenuItem helpMenu;
-        private System.Windows.Forms.ToolStripMenuItem aboutMenu;
+        private System.Windows.Forms.TableLayoutPanel calendarLayout;
+        private System.Windows.Forms.Button moreButton;
+        private System.Windows.Forms.ContextMenuStrip calendarMenu;
+        private System.Windows.Forms.ToolStripMenuItem calendarPreferencesMenu;
+        private System.Windows.Forms.ToolStripMenuItem calendarAboutMenu;
+        private System.Windows.Forms.ToolStripMenuItem calendarExitMenu;
+        private System.Windows.Forms.ToolTip menuToolTip;
     }
 }
-
