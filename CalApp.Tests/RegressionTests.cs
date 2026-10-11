@@ -50,6 +50,9 @@ namespace CalApp.Tests
                 Run("Preference cancel, defaults, reset and manual colors", PreferenceControls);
                 Run("Hidden tray form creates handles and releases resources", TrayLifecycle);
                 Run("Window close hides the app; application exit ends its context", ApplicationLifetime);
+                Run("Tray refresh and preferences do not create a calendar window", LazyCalendar);
+                Run("Application exit works before the calendar is opened", ExitWithoutCalendar);
+                Run("Week number icons retain their original 16-pixel size", IconSize);
             }
             Console.WriteLine("Passed: " + passed + "; failed: " + failed + "; assertions: " + assertions);
             return failed == 0 ? 0 : 1;
@@ -74,11 +77,14 @@ namespace CalApp.Tests
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             timer.Restart();
-            using (var form = new CalendarForm(controller))
+            using (var context = new TrayApplicationContext(controller))
             {
-                Console.WriteLine("Calendar form and tray icons: " + timer.ElapsedMilliseconds + " ms");
+                Console.WriteLine("Tray startup without a calendar: " + timer.ElapsedMilliseconds + " ms");
                 timer.Restart();
-                form.EnsureHandleCreated();
+                CalendarForm form = context.GetCalendar();
+                Console.WriteLine("First calendar creation: " + timer.ElapsedMilliseconds + " ms");
+                timer.Restart();
+                var unused = form.Handle;
                 Console.WriteLine("Window handle creation: " + timer.ElapsedMilliseconds + " ms");
             }
         });
@@ -325,9 +331,9 @@ namespace CalApp.Tests
         private static void CalendarSelection() => WithDirectory(directory =>
         {
             var controller = new SettingsController(new SettingsStore(Path.Combine(directory, "Preferences.xml")), new FakeStartup(), "test.exe");
-            using (var form = new CalendarForm(controller))
+            using (var context = new TrayApplicationContext(controller))
             {
-                form.EnsureHandleCreated();
+                CalendarForm form = context.GetCalendar();
                 MonthCalendar calendar = Field<MonthCalendar>(form, "dateCalendar");
                 DateTime selected = new DateTime(2024, 12, 30); calendar.SetDate(selected);
                 controller.Apply(new AppSettings { FirstFiscalMonth = Month.January, FirstDayOfFiscalWeek = DayOfWeek.Monday, StartWithWindows = false });
@@ -362,12 +368,15 @@ namespace CalApp.Tests
         private static void TrayLifecycle() => WithDirectory(directory =>
         {
             var controller = new SettingsController(new SettingsStore(Path.Combine(directory, "Preferences.xml")), new FakeStartup(), "test.exe");
-            var form = new CalendarForm(controller);
-            form.EnsureHandleCreated(); Equal(true, form.IsHandleCreated); Equal(false, form.Visible);
-            Timer timer = Field<Timer>(form, "refreshTimer"); Equal(true, timer.Enabled);
-            NotifyIcon icon = Field<NotifyIcon>(form, "fiscalWeekTrayIcon");
-            Equal(true, icon.Icon != null); form.Dispose(); Equal(false, timer.Enabled);
-            Equal(false, icon.Visible); Equal(null, icon.Icon); form.Dispose();
+            var context = new TrayApplicationContext(controller);
+            Equal(null, Field<CalendarForm>(context, "calendarForm"));
+            Form owner = Field<ApplicationLifetimeWindow>(context, "lifetimeWindow");
+            Equal(true, owner.IsHandleCreated); Equal(false, owner.Visible);
+            Timer timer = Field<Timer>(context, "refreshTimer"); Equal(true, timer.Enabled);
+            TrayIcons icons = Field<TrayIcons>(context, "trayIcons");
+            NotifyIcon icon = Field<NotifyIcon>(icons, "fiscalWeekTrayIcon");
+            Equal(true, icon.Icon != null); context.Dispose(); Equal(false, timer.Enabled);
+            Equal(false, icon.Visible); Equal(null, icon.Icon); Equal(true, owner.IsDisposed); context.Dispose();
             controller.Apply(new AppSettings { StartWithWindows = false });
         });
 
@@ -378,8 +387,9 @@ namespace CalApp.Tests
             Timer refreshTimer;
             using (var context = new TrayApplicationContext(controller))
             {
-                form = Field<CalendarForm>(context, "calendarForm");
-                refreshTimer = Field<Timer>(form, "refreshTimer");
+                form = context.GetCalendar();
+                var unused = form.Handle;
+                refreshTimer = Field<Timer>(context, "refreshTimer");
                 int exits = 0; context.ThreadExit += (sender, e) => exits++;
                 Exception callbackError = null;
                 using (var quitTimer = new Timer { Interval = 30 })
@@ -404,5 +414,48 @@ namespace CalApp.Tests
             Equal(true, form.IsDisposed);
             Equal(false, refreshTimer.Enabled);
         });
+
+        private static void LazyCalendar() => WithDirectory(directory =>
+        {
+            DateTime now = new DateTime(2025, 12, 28, 23, 59, 59);
+            var controller = new SettingsController(new SettingsStore(Path.Combine(directory, "Preferences.xml")), new FakeStartup(), "test.exe");
+            using (var context = new TrayApplicationContext(controller, () => now))
+            {
+                Equal(null, Field<CalendarForm>(context, "calendarForm"));
+                TrayIcons icons = Field<TrayIcons>(context, "trayIcons");
+                NotifyIcon icon = Field<NotifyIcon>(icons, "calendarWeekTrayIcon");
+                Equal("Calendar week 52", icon.Text);
+                now = now.AddSeconds(2);
+                Invoke(context, "RefreshTimer_Tick");
+                Equal("Calendar week 1", icon.Text);
+                controller.Apply(new AppSettings { StartWithWindows = false, StandardIcon = false, CalendarWeekIcon = false });
+                Equal(false, Field<NotifyIcon>(icons, "standardTrayIcon").Visible);
+                Equal(false, icon.Visible);
+                Equal(true, Field<NotifyIcon>(icons, "fiscalWeekTrayIcon").Visible);
+                using (var dialog = new PreferencesForm(controller)) Invoke(dialog, "PreferencesForm_Load");
+                Equal(null, Field<CalendarForm>(context, "calendarForm"));
+                CalendarForm calendar = context.GetCalendar();
+                Equal(calendar, context.GetCalendar()); Equal(false, calendar.Visible);
+            }
+        });
+
+        private static void ExitWithoutCalendar() => WithDirectory(directory =>
+        {
+            var controller = new SettingsController(new SettingsStore(Path.Combine(directory, "Preferences.xml")), new FakeStartup(), "test.exe");
+            using (var context = new TrayApplicationContext(controller))
+            using (var quitTimer = new Timer { Interval = 30 })
+            {
+                Equal(null, Field<CalendarForm>(context, "calendarForm"));
+                int exits = 0; context.ThreadExit += (sender, e) => exits++;
+                quitTimer.Tick += (sender, e) => { quitTimer.Stop(); Application.Exit(); };
+                quitTimer.Start(); Application.Run(context);
+                Equal(1, exits); Equal(null, Field<CalendarForm>(context, "calendarForm"));
+            }
+        });
+
+        private static void IconSize()
+        {
+            using (Icon icon = IconFactory.CreateText("41", Color.Yellow, Color.Black)) Equal(new Size(16, 16), icon.Size);
+        }
     }
 }

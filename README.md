@@ -11,7 +11,8 @@ week number, and refreshes itself automatically at the top of every hour and at 
 - **Tray icons** for the ISO-8601 calendar week and a configurable fiscal week — each a
   small number badge you can colour to taste.
 - **Popup panel** (left-click a tray icon) with the calendar week, fiscal week, fiscal year,
-  and a month calendar for looking up any date.
+  and a month calendar for looking up any date. The calendar window is created only
+  on first use; tray icons and preferences work without opening it.
 - **Configurable fiscal calendar** — first fiscal month, first day of the week, and the
   fiscal-week rule (how many days of a week must fall in the first month to count as week 1).
 - **Per-icon colours** — pick a background per icon; the text colour is either
@@ -63,6 +64,12 @@ You can also run the test executable after building `CalApp.sln`:
 .\CalApp.Tests\bin\Release\CalApp.Tests.exe --ui
 ```
 
+To measure startup phases in an isolated process:
+
+```powershell
+.\CalApp.Tests\bin\Release\CalApp.Tests.exe --startup-timing
+```
+
 The runner returns a nonzero exit code on failure. Tests cover a complete 400-year
 Gregorian cycle for ISO weeks, every fiscal month/weekday/week-rule combination,
 settings migration and recovery, save failures, automatic contrast, and UI behavior.
@@ -106,12 +113,21 @@ color is temporarily enabled.
 
 ## Code layout
 
-- `CalendarForm`, `PreferencesForm`, `AboutForm`: Windows Forms and interaction.
-- `TrayApplicationContext`: hidden startup and application lifetime.
-- `DateFunctions`: ISO and fiscal calendar calculations, independent of the UI.
+- `TrayApplicationContext`: owns settings, refresh, application lifetime, and window coordination.
+- `TrayIcons`: owns the tray icons and their context menu, with the established 16-pixel number rendering.
+- `ApplicationLifetimeWindow`: a lightweight hidden dialog owner that receives Windows shutdown messages.
+- `CalendarForm`: a calendar view created on demand; displays results and reports user requests.
+- `PreferencesForm`, `AboutForm`: settings and application information dialogs.
+- `DateFunctions/WeekCalculator`: calculates a typed `WeekInfo` result for the selected date.
+- `DateFunctions/IsoCalendar`, `FiscalCalendar`: calendar algorithms, independent of the UI.
 - `Config`: settings snapshots, persistence, apply coordination, and icon contrast.
 - `Preferences/StartupRegistration`: the current-user Windows startup entry.
 - `CalApp.Tests`: regression runner with isolated temporary settings and fake startup entries.
+
+The stable 1.1 baseline is kept on `master` and tagged `v1.1.0`. The compatible 1.2
+architecture update is developed on `dev`; existing preferences and week-icon
+appearance remain compatible. Startup, background refresh, and preferences never
+create the calendar view. Closing the calendar hides it; Exit ends the tray application.
 
 Before distributing a release internally, check the actual desktop behavior at your
 company's DPI settings and after sleep, logoff, and a Windows restart. The ZIP is a

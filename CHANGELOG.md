@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.2.0
+
+- Make the tray application own icons, menus, refresh, and application lifetime.
+- Create the calendar window only when first requested; preferences do not require it.
+- Keep the calendar view independent of settings storage, tray icons, and timers.
+- Calculate one typed week result for any date and share it between tray and calendar.
+- Preserve the established 16-by-16 tray-number rendering and existing preferences.
+- Test lazy window creation, background updates, and shutdown without a calendar window.
+
 ## 1.1.0
 
 - Correct fiscal week rules and fiscal-year transitions, including January starts.

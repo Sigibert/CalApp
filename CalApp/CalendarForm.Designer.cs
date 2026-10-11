@@ -13,7 +13,6 @@ namespace CalApp
         /// <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && !IsDisposed) ReleaseTrayResources();
             if (disposing && (components != null))
             {
                 components.Dispose();
@@ -31,91 +30,22 @@ namespace CalApp
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CalendarForm));
-            this.trayMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.standardTrayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.calendarWeekLabel = new System.Windows.Forms.Label();
             this.fiscalWeekLabel = new System.Windows.Forms.Label();
             this.fiscalYearLabel = new System.Windows.Forms.Label();
             this.dateCalendar = new System.Windows.Forms.MonthCalendar();
             this.mainMenu = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.closeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.preferencesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.fiscalWeekTrayIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.calendarWeekTrayIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.hideCalendarMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.preferencesMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.exitMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.dateSelectionGroup = new System.Windows.Forms.GroupBox();
-            this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.infoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.trayMenu.SuspendLayout();
+            this.helpMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.dateSelectionGroup.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // trayMenu
-            // 
-            this.trayMenu.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.trayMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exitToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.preferencesToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.showToolStripMenuItem,
-            this.closeToolStripMenuItem});
-            this.trayMenu.Name = "trayMenu";
-            this.trayMenu.Size = new System.Drawing.Size(136, 104);
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(132, 6);
-            // 
-            // preferencesToolStripMenuItem
-            // 
-            this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
-            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.preferencesToolStripMenuItem.Text = "Preferences";
-            this.preferencesToolStripMenuItem.Click += new System.EventHandler(this.PreferencesToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(132, 6);
-            // 
-            // showToolStripMenuItem
-            // 
-            this.showToolStripMenuItem.Name = "showToolStripMenuItem";
-            this.showToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.showToolStripMenuItem.Text = "Show";
-            this.showToolStripMenuItem.Click += new System.EventHandler(this.ShowToolStripMenuItem_Click);
-            // 
-            // closeToolStripMenuItem
-            // 
-            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.closeToolStripMenuItem.Text = "Close";
-            this.closeToolStripMenuItem.Click += new System.EventHandler(this.CloseToolStripMenuItem_Click);
-            // 
-            // standardTrayIcon
-            // 
-            this.standardTrayIcon.ContextMenuStrip = this.trayMenu;
-            this.standardTrayIcon.Text = "Settings";
-            this.standardTrayIcon.Visible = true;
-            this.standardTrayIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TrayIcon_MouseClick);
             // 
             // calendarWeekLabel
             // 
@@ -169,8 +99,8 @@ namespace CalApp
             this.mainMenu.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.mainMenu.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.infoToolStripMenuItem});
+            this.fileMenu,
+            this.helpMenu});
             this.mainMenu.Location = new System.Drawing.Point(3, 0);
             this.mainMenu.Margin = new System.Windows.Forms.Padding(3);
             this.mainMenu.Name = "mainMenu";
@@ -180,56 +110,42 @@ namespace CalApp
             this.mainMenu.TabIndex = 6;
             this.mainMenu.Text = "mainMenu";
             // 
-            // fileToolStripMenuItem
+            // fileMenu
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.closeToolStripMenuItem1,
-            this.preferencesToolStripMenuItem1,
-            this.toolStripSeparator3,
-            this.exitToolStripMenuItem1});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
-            this.fileToolStripMenuItem.Text = "File";
+            this.fileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hideCalendarMenu,
+            this.preferencesMenu,
+            this.fileSeparator,
+            this.exitMenu});
+            this.fileMenu.Name = "fileMenu";
+            this.fileMenu.Size = new System.Drawing.Size(41, 20);
+            this.fileMenu.Text = "File";
             // 
-            // closeToolStripMenuItem1
+            // hideCalendarMenu
             // 
-            this.closeToolStripMenuItem1.Name = "closeToolStripMenuItem1";
-            this.closeToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.closeToolStripMenuItem1.Text = "Close";
-            this.closeToolStripMenuItem1.Click += new System.EventHandler(this.CloseToolStripMenuItem1_Click);
+            this.hideCalendarMenu.Name = "hideCalendarMenu";
+            this.hideCalendarMenu.Size = new System.Drawing.Size(180, 22);
+            this.hideCalendarMenu.Text = "Close";
+            this.hideCalendarMenu.Click += new System.EventHandler(this.HideCalendarMenu_Click);
             // 
-            // preferencesToolStripMenuItem1
+            // preferencesMenu
             // 
-            this.preferencesToolStripMenuItem1.Name = "preferencesToolStripMenuItem1";
-            this.preferencesToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.preferencesToolStripMenuItem1.Text = "Preferences";
-            this.preferencesToolStripMenuItem1.Click += new System.EventHandler(this.PreferencesToolStripMenuItem1_Click);
+            this.preferencesMenu.Name = "preferencesMenu";
+            this.preferencesMenu.Size = new System.Drawing.Size(180, 22);
+            this.preferencesMenu.Text = "Preferences";
+            this.preferencesMenu.Click += new System.EventHandler(this.PreferencesMenu_Click);
             // 
-            // toolStripSeparator3
+            // fileSeparator
             // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            this.fileSeparator.Name = "fileSeparator";
+            this.fileSeparator.Size = new System.Drawing.Size(177, 6);
             // 
-            // exitToolStripMenuItem1
+            // exitMenu
             // 
-            this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
-            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.exitToolStripMenuItem1.Text = "Exit";
-            this.exitToolStripMenuItem1.Click += new System.EventHandler(this.ExitToolStripMenuItem1_Click);
-            // 
-            // fiscalWeekTrayIcon
-            // 
-            this.fiscalWeekTrayIcon.ContextMenuStrip = this.trayMenu;
-            this.fiscalWeekTrayIcon.Text = "Fiscal Week";
-            this.fiscalWeekTrayIcon.Visible = true;
-            this.fiscalWeekTrayIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TrayIcon_MouseClick);
-            // 
-            // calendarWeekTrayIcon
-            // 
-            this.calendarWeekTrayIcon.ContextMenuStrip = this.trayMenu;
-            this.calendarWeekTrayIcon.Text = "Calendar Week";
-            this.calendarWeekTrayIcon.Visible = true;
-            this.calendarWeekTrayIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TrayIcon_MouseClick);
+            this.exitMenu.Name = "exitMenu";
+            this.exitMenu.Size = new System.Drawing.Size(180, 22);
+            this.exitMenu.Text = "Exit";
+            this.exitMenu.Click += new System.EventHandler(this.ExitMenu_Click);
             // 
             // dateSelectionGroup
             // 
@@ -241,20 +157,20 @@ namespace CalApp
             this.dateSelectionGroup.TabStop = false;
             this.dateSelectionGroup.Text = "Date Selection";
             // 
-            // infoToolStripMenuItem
+            // helpMenu
             // 
-            this.infoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.infoToolStripMenuItem1});
-            this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
-            this.infoToolStripMenuItem.Size = new System.Drawing.Size(27, 20);
-            this.infoToolStripMenuItem.Text = "?";
+            this.helpMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutMenu});
+            this.helpMenu.Name = "helpMenu";
+            this.helpMenu.Size = new System.Drawing.Size(27, 20);
+            this.helpMenu.Text = "?";
             // 
-            // infoToolStripMenuItem1
+            // aboutMenu
             // 
-            this.infoToolStripMenuItem1.Name = "infoToolStripMenuItem1";
-            this.infoToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.infoToolStripMenuItem1.Text = "Info";
-            this.infoToolStripMenuItem1.Click += new System.EventHandler(this.InfoToolStripMenuItem_Click);
+            this.aboutMenu.Name = "aboutMenu";
+            this.aboutMenu.Size = new System.Drawing.Size(180, 22);
+            this.aboutMenu.Text = "Info";
+            this.aboutMenu.Click += new System.EventHandler(this.AboutMenu_Click);
             // 
             // CalendarForm
             // 
@@ -283,7 +199,6 @@ namespace CalApp
             this.Text = "Calendar Week Info";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CalendarForm_FormClosing);
             this.Move += new System.EventHandler(this.CalendarForm_Move);
-            this.trayMenu.ResumeLayout(false);
             this.mainMenu.ResumeLayout(false);
             this.mainMenu.PerformLayout();
             this.dateSelectionGroup.ResumeLayout(false);
@@ -293,29 +208,19 @@ namespace CalApp
         }
 
         #endregion
-        private System.Windows.Forms.ContextMenuStrip trayMenu;
-        private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.NotifyIcon standardTrayIcon;
         private System.Windows.Forms.Label calendarWeekLabel;
         private System.Windows.Forms.Label fiscalWeekLabel;
         private System.Windows.Forms.Label fiscalYearLabel;
         private System.Windows.Forms.MonthCalendar dateCalendar;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.MenuStrip mainMenu;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem1;
-        private System.Windows.Forms.NotifyIcon fiscalWeekTrayIcon;
-        private System.Windows.Forms.NotifyIcon calendarWeekTrayIcon;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem fileMenu;
+        private System.Windows.Forms.ToolStripMenuItem preferencesMenu;
+        private System.Windows.Forms.ToolStripMenuItem hideCalendarMenu;
+        private System.Windows.Forms.ToolStripMenuItem exitMenu;
+        private System.Windows.Forms.ToolStripSeparator fileSeparator;
         private System.Windows.Forms.GroupBox dateSelectionGroup;
-        private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem helpMenu;
+        private System.Windows.Forms.ToolStripMenuItem aboutMenu;
     }
 }
 

@@ -23,7 +23,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
+    <ApplicationVersion>1.2.0.%2a</ApplicationVersion>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -73,6 +73,7 @@
     <Compile Include="Config\SettingsController.cs" />
     <Compile Include="DateFunctions\IsoCalendar.cs" />
     <Compile Include="DateFunctions\FiscalCalendar.cs" />
+    <Compile Include="DateFunctions\WeekCalculator.cs" />
     <Compile Include="CalendarForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +104,8 @@
     </Compile>
     <Compile Include="RefreshSchedule.cs" />
     <Compile Include="TrayApplicationContext.cs" />
+    <Compile Include="TrayIcons.cs" />
+    <Compile Include="ApplicationLifetimeWindow.cs" />
     <EmbeddedResource Include="CalendarForm.resx">
       <DependentUpon>CalendarForm.cs</DependentUpon>
     </EmbeddedResource>
