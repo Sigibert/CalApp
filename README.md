@@ -2,7 +2,7 @@
 
 **Kalender- und Geschäftswochen auf einen Blick.**
 
-*Calendar and fiscal weeks at a glance.* Formerly Calendar Week Info / CalApp.
+*Calendar and fiscal weeks at a glance.*
 
 A lightweight Windows system-tray app that shows the current **calendar week** (ISO 8601)
 and **fiscal week** at a glance, and opens a small calendar popup on click.
@@ -40,13 +40,13 @@ week number, and refreshes itself automatically at the top of every hour and at 
 
 ## Building
 
-Open `CalApp.sln` in Visual Studio and build, or from a developer prompt:
+Open `WeekTrayInfo.sln` in Visual Studio and build, or from a developer prompt:
 
 ```
-msbuild CalApp\CalApp.csproj /t:Rebuild /p:Configuration=Release
+msbuild WeekTrayInfo\WeekTrayInfo.csproj /t:Rebuild /p:Configuration=Release
 ```
 
-The executable is produced at `CalApp\bin\Release\CalendarWeekInfo.exe`.
+The executable is produced at `WeekTrayInfo\bin\Release\WeekTrayInfo.exe`.
 
 To build the solution and run the regression tests from PowerShell:
 
@@ -81,16 +81,16 @@ It skips app launch, shortcuts and startup synchronization, checks program-file
 replacement and verifies that personal preferences and autostart are unchanged.
 Pass `-InnoSetupCompiler <path-to-ISCC.exe>` when needed. Test logs remain in artifacts.
 
-You can also run the test executable after building `CalApp.sln`:
+You can also run the test executable after building `WeekTrayInfo.sln`:
 
 ```powershell
-.\CalApp.Tests\bin\Release\CalApp.Tests.exe --ui
+.\WeekTrayInfo.Tests\bin\Release\WeekTrayInfo.Tests.exe --ui
 ```
 
 To measure startup phases in an isolated process:
 
 ```powershell
-.\CalApp.Tests\bin\Release\CalApp.Tests.exe --startup-timing
+.\WeekTrayInfo.Tests\bin\Release\WeekTrayInfo.Tests.exe --startup-timing
 ```
 
 The runner returns a nonzero exit code on failure. Tests cover a complete 400-year
@@ -102,15 +102,13 @@ settings migration and recovery, save failures, automatic contrast, and UI behav
 ### Installation and updates
 
 Run `WeekTrayInfo-Setup-<version>.exe`. Setup installs for the current user without
-administrator rights at `%LOCALAPPDATA%\Programs\CalApp\CalendarWeekInfo.exe`.
-The legacy installation path, executable name, settings location, installer AppId,
-startup entry and tray identities are intentionally retained across the rename.
-The GitHub repository stays at `Sigibert/CalApp` so earlier update checks keep working.
+administrator rights at `%LOCALAPPDATA%\Programs\WeekTrayInfo\WeekTrayInfo.exe`.
+Source, solution, executable, installer, settings and internal identities all use
+WeekTrayInfo. Source and releases are at `https://github.com/Sigibert/WeekTrayInfo`.
 Public downloads use `WeekTrayInfo-Setup-<version>.exe` and `WeekTrayInfo-<version>.zip`.
-Older prereleases can open the release page to download the renamed installer.
 Later versions replace the program in this same folder. Setup closes the running
-installed app gracefully and starts the new version. When moving from the old ZIP
-release, exit that old app in its tray menu first. Setup creates a Start menu entry
+installed app gracefully and starts the new version. When moving from a portable
+copy, exit it in its tray menu first. Setup creates a Start menu entry
 and an entry under Windows' installed apps.
 
 Setup preserves preferences and synchronizes the Windows startup path according to
@@ -141,7 +139,7 @@ settings, independently of the app language. Standard Windows dialogs, such as t
 color picker, also use Windows' own language.
 
 English resources are built into the EXE; the German pack is
-`de\CalendarWeekInfo.resources.dll`. Keep that folder alongside the EXE when using
+`de\WeekTrayInfo.resources.dll`. Keep that folder alongside the EXE when using
 the ZIP package; setup installs and updates it automatically.
 
 - **Left-click** a tray icon: show/hide the info panel.
@@ -177,12 +175,11 @@ GitHub sign-in in the browser; automatic release comparison requires public rele
 Settings are stored per-user at the stable, version-independent location:
 
 ```text
-%APPDATA%\ChristophZieglerHomeLab\Calendar Week Info\Preferences.xml
+%APPDATA%\WeekTrayInfo\Preferences.xml
 ```
 
-If that file is absent, the app reads the newest usable preferences from the old
-version-number subfolders. Applying preferences saves them to the new location;
-the original file remains intact. Updates therefore keep the same settings.
+If that file is absent, the app uses its defaults. Applying preferences saves to
+this location. Future WeekTrayInfo updates keep the same settings.
 Writes replace the file atomically and keep the previous valid save as
 `Preferences.xml.bak`. A damaged file triggers a warning and recovery from that
 backup, or default settings if no readable backup exists. At least one tray icon
@@ -223,11 +220,16 @@ Release numbering and the preparation process are documented in [VERSIONING.md](
 - `Config`: settings snapshots, persistence, apply coordination, and icon contrast.
 - `Config/SettingsTransfer`: validated XML import and atomic export, separate from Apply.
 - `Preferences/StartupRegistration`: the current-user Windows startup entry.
-- `CalApp.Tests`: regression runner with isolated temporary settings and fake startup entries.
+- `WeekTrayInfo.Tests`: regression runner with isolated temporary settings and fake startup entries.
 
-The stable release is 1.2.0 on `master`, tagged `v1.2.0`. Development continues on
-`dev`. The previous 1.1 baseline remains available as `v1.1.0`; existing preferences
-and week-icon appearance remain compatible. Startup, background refresh, and preferences never
+The stable release is 2.0.0 on `master`, tagged `v2.0.0`. Development continues on
+`dev`. Version 2.0 starts a clean WeekTrayInfo installation with new application,
+settings and tray identities. Earlier CalApp / Calendar Week Info releases remain
+available as historical tags. Exit and uninstall an earlier installed version before
+rolling out 2.0; its old preferences are left untouched and are not imported automatically.
+Configure the new version once and export its settings to transfer them to other machines.
+Tray icons may need to be arranged once for this new identity; subsequent updates retain it.
+The number icons keep their familiar appearance. Startup, background refresh, and preferences never
 create the calendar view. Closing the calendar hides it; Exit ends the tray application.
 
 Before distributing a release internally, check the actual desktop behavior at your

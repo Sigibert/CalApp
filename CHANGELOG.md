@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.0.0
+
+- Establish WeekTrayInfo as a clean application identity for the first rollout.
+- Rename solution, projects, namespaces, resources and executable to WeekTrayInfo.
+- Install to `%LOCALAPPDATA%\Programs\WeekTrayInfo\WeekTrayInfo.exe` and store settings in `%APPDATA%\WeekTrayInfo\Preferences.xml`.
+- Use new installer AppIds and tray GUIDs, plus WeekTrayInfo names for autostart, mutexes and application windows.
+- Use the `WeekTrayInfoSettings` XML root for preferences and settings transfer.
+- Rename the GitHub repository to `Sigibert/WeekTrayInfo` and update release links and checks.
+- Start with fresh settings; retain the new paths and identities for future updates.
+- Existing pre-2.0 installations must be exited/uninstalled before rollout; their preferences are not automatically migrated or deleted.
+- Retain MIT licensing and the original calendar artwork.
+
 ## 1.2.0
 
 - Release the new tray architecture, per-user installer, persistent tray identities, English/German language packs, update check, fiscal preview and settings transfer as a stable version.

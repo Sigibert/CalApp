@@ -4,7 +4,7 @@ param([switch]$Preview)
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.Drawing
 $repository = Split-Path $PSScriptRoot -Parent
-$output = Join-Path $repository 'CalApp\Resources\Calendar_Icon.ico'
+$output = Join-Path $repository 'WeekTrayInfo\Resources\CalendarIcon.ico'
 
 function New-RoundedRectangle([float]$x, [float]$y, [float]$width, [float]$height, [float]$radius) {
     $path = New-Object System.Drawing.Drawing2D.GraphicsPath

@@ -19,7 +19,7 @@ the final release, publish `1.2.0-rc.2`, then `1.2.0-rc.3`. Once accepted, publi
 
 ## Preparing a release
 
-1. Set `CalAppVersion` in `Version.props`, e.g. `1.2.0-rc.1` or `1.2.0`.
+1. Set `WeekTrayInfoVersion` in `Version.props`, e.g. `1.2.0-rc.1` or `1.2.0`.
 2. Update `CHANGELOG.md` and run `build.ps1 -UiTests -Package`.
 3. Commit the tested source and create its matching Git tag, e.g. `v1.2.0-rc.1`.
 4. Publish a GitHub release with that exact tag and ZIP. Mark release candidates

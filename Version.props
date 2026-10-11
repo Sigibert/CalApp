@@ -1,7 +1,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <!-- Change this one value when preparing the next release. -->
-    <CalAppVersion>1.2.0</CalAppVersion>
-    <CalAppNumericVersion>$([System.Text.RegularExpressions.Regex]::Replace('$(CalAppVersion)', '[-+].*$', '')).0</CalAppNumericVersion>
+    <WeekTrayInfoVersion>2.0.0</WeekTrayInfoVersion>
+    <WeekTrayInfoNumericVersion>$([System.Text.RegularExpressions.Regex]::Replace('$(WeekTrayInfoVersion)', '[-+].*$', '')).0</WeekTrayInfoNumericVersion>
   </PropertyGroup>
 </Project>

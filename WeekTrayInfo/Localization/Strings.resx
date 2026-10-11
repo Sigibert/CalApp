@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="PreferencesForm" xml:space="preserve"><value>Preferences</value></data>
+  <data name="CalendarForm" xml:space="preserve"><value>WeekTrayInfo</value></data>
+  <data name="AboutForm" xml:space="preserve"><value>About WeekTrayInfo</value></data>
+  <data name="iconsGroup" xml:space="preserve"><value>Icons</value></data>
+  <data name="checkBoxStandardIcon" xml:space="preserve"><value>Standard icon</value></data>
+  <data name="checkBoxFiscalWeekIcon" xml:space="preserve"><value>Fiscal week</value></data>
+  <data name="checkBoxCalendarWeekIcon" xml:space="preserve"><value>Calendar week</value></data>
+  <data name="buttonStandardIconColor" xml:space="preserve"><value>Color</value></data>
+  <data name="buttonFiscalWeekIconColor" xml:space="preserve"><value>Color</value></data>
+  <data name="buttonCalendarWeekIconColor" xml:space="preserve"><value>Color</value></data>
+  <data name="checkBoxFiscalWeekAutoFore" xml:space="preserve"><value>Auto contrast</value></data>
+  <data name="checkBoxCalendarWeekAutoFore" xml:space="preserve"><value>Auto contrast</value></data>
+  <data name="buttonFiscalWeekIconForeColor" xml:space="preserve"><value>Text</value></data>
+  <data name="buttonCalendarWeekIconForeColor" xml:space="preserve"><value>Text</value></data>
+  <data name="fiscalCalendarGroup" xml:space="preserve"><value>Fiscal calendar</value></data>
+  <data name="firstFiscalMonthLabel" xml:space="preserve"><value>First fiscal month:</value></data>
+  <data name="firstFiscalWeekdayLabel" xml:space="preserve"><value>First day of the week:</value></data>
+  <data name="fiscalWeekRuleLabel" xml:space="preserve"><value>First week rule:</value></data>
+  <data name="startupGroup" xml:space="preserve"><value>Startup</value></data>
+  <data name="checkBoxStartup" xml:space="preserve"><value>Start with Windows</value></data>
+  <data name="languageGroup" xml:space="preserve"><value>Language</value></data>
+  <data name="languageLabel" xml:space="preserve"><value>Display language:</value></data>
+  <data name="buttonOk" xml:space="preserve"><value>OK</value></data>
+  <data name="buttonCancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="buttonApply" xml:space="preserve"><value>Apply</value></data>
+  <data name="buttonReset" xml:space="preserve"><value>Reset</value></data>
+  <data name="buttonDefault" xml:space="preserve"><value>Default</value></data>
+  <data name="fileMenu" xml:space="preserve"><value>File</value></data>
+  <data name="hideCalendarMenu" xml:space="preserve"><value>Close</value></data>
+  <data name="preferencesMenu" xml:space="preserve"><value>Preferences</value></data>
+  <data name="exitMenu" xml:space="preserve"><value>Exit</value></data>
+  <data name="aboutMenu" xml:space="preserve"><value>About</value></data>
+  <data name="dateSelectionGroup" xml:space="preserve"><value>Date selection</value></data>
+  <data name="trayShow" xml:space="preserve"><value>Show</value></data>
+  <data name="CalendarWeek" xml:space="preserve"><value>Calendar week: {0}</value></data>
+  <data name="FiscalWeek" xml:space="preserve"><value>Fiscal week: {0}</value></data>
+  <data name="FiscalYear" xml:space="preserve"><value>Fiscal year: {0}</value></data>
+  <data name="CalendarWeekTip" xml:space="preserve"><value>Calendar week {0}</value></data>
+  <data name="FiscalWeekTip" xml:space="preserve"><value>Fiscal week {0} ({1})</value></data>
+  <data name="FullWeek" xml:space="preserve"><value>Full week (7 days)</value></data>
+  <data name="OneDay" xml:space="preserve"><value>At least 1 day</value></data>
+  <data name="MinimumDays" xml:space="preserve"><value>At least {0} days</value></data>
+  <data name="SystemLanguage" xml:space="preserve"><value>System (automatic)</value></data>
+  <data name="authorLabel" xml:space="preserve"><value>Author: Christoph Ziegler</value></data>
+  <data name="Version" xml:space="preserve"><value>Version: {0}</value></data>
+  <data name="contactLink" xml:space="preserve"><value>Contact</value></data>
+  <data name="licenseGroup" xml:space="preserve"><value>License information</value></data>
+  <data name="closeButton" xml:space="preserve"><value>OK</value></data>
+  <data name="ApplicationInfo" xml:space="preserve"><value>Calendar and fiscal weeks at a glance.
+
+Shows calendar and fiscal weeks in the Windows notification area. The fiscal calendar is configurable; calendar weeks follow ISO 8601.</value></data>
+  <data name="EmailUnavailable" xml:space="preserve"><value>The email application could not be opened.
+Contact: christophzieglerapps@outlook.com</value></data>
+  <data name="ApplyFailed" xml:space="preserve"><value>Preferences could not be applied:
+{0}</value></data>
+  <data name="AlreadyRunning" xml:space="preserve"><value>WeekTrayInfo is already running.</value></data>
+  <data name="AlreadyRunningTitle" xml:space="preserve"><value>Already running</value></data>
+  <data name="BackupRestored" xml:space="preserve"><value>The preferences file could not be loaded. The last backup has been restored in memory. Apply preferences to save it again.</value></data>
+  <data name="LegacyReadFailed" xml:space="preserve"><value>Previous preferences could not be read:
+{0}</value></data>
+  <data name="LoadFailed" xml:space="preserve"><value>Preferences could not be loaded; default settings are in use:
+{0}</value></data>
+  <data name="InvalidCalendar" xml:space="preserve"><value>The fiscal calendar settings are invalid.</value></data>
+  <data name="IconRequired" xml:space="preserve"><value>At least one tray icon must remain visible.</value></data>
+  <data name="ColorMissing" xml:space="preserve"><value>An icon color is missing.</value></data>
+  <data name="InvalidLanguage" xml:space="preserve"><value>The selected language is invalid.</value></data>
+  <data name="StartupRollbackFailed" xml:space="preserve"><value>Preferences could not be saved and the previous Windows startup setting could not be restored. Check both settings.</value></data>
+  <data name="StartupUnsafe" xml:space="preserve"><value>Preferences could not be read safely. Windows startup was left unchanged.</value></data>
+  <data name="StartupUnavailable" xml:space="preserve"><value>The Windows startup registry key is unavailable.</value></data>
+  <data name="EmptyPreferences" xml:space="preserve"><value>The preferences file is empty.</value></data>
+  <data name="FiscalPreview" xml:space="preserve"><value>Fiscal year {0}: starts {1}
+Week 1: {1} – {2}</value></data>
+  <data name="transferGroup" xml:space="preserve"><value>Import / export settings</value></data>
+  <data name="importButton" xml:space="preserve"><value>Import…</value></data>
+  <data name="exportButton" xml:space="preserve"><value>Export…</value></data>
+  <data name="transferHint" xml:space="preserve"><value>Import loads values for review. Apply saves them.</value></data>
+  <data name="ImportTitle" xml:space="preserve"><value>Import settings</value></data>
+  <data name="ExportTitle" xml:space="preserve"><value>Export settings</value></data>
+  <data name="SettingsFileFilter" xml:space="preserve"><value>Settings files (*.xml)|*.xml|All files (*.*)|*.*</value></data>
+  <data name="ImportFailed" xml:space="preserve"><value>Settings could not be imported:
+{0}</value></data>
+  <data name="ExportFailed" xml:space="preserve"><value>Settings could not be exported:
+{0}</value></data>
+  <data name="Exported" xml:space="preserve"><value>The displayed settings have been exported.</value></data>
+  <data name="ExportActiveFile" xml:space="preserve"><value>Choose a separate export file. The active preferences and backup must not be overwritten.</value></data>
+  <data name="checkUpdatesMenu" xml:space="preserve"><value>Check for updates…</value></data>
+  <data name="UpdateForm" xml:space="preserve"><value>WeekTrayInfo updates</value></data>
+  <data name="CurrentVersion" xml:space="preserve"><value>Installed version: {0}</value></data>
+  <data name="openReleases" xml:space="preserve"><value>Open GitHub releases</value></data>
+  <data name="downloadUpdate" xml:space="preserve"><value>Open download</value></data>
+  <data name="UpdateChecking" xml:space="preserve"><value>Checking published releases…</value></data>
+  <data name="UpdateFound" xml:space="preserve"><value>Version {0} is available. Open the download and run the setup to update.</value></data>
+  <data name="UpdateCurrent" xml:space="preserve"><value>No newer matching release was found.</value></data>
+  <data name="UpdatePrivate" xml:space="preserve"><value>Release data is not publicly accessible. For a private repository, open the releases in your browser and sign in to GitHub.</value></data>
+  <data name="UpdateLimited" xml:space="preserve"><value>GitHub temporarily refused the request. Try again later or open the releases in your browser.</value></data>
+  <data name="UpdateUnavailable" xml:space="preserve"><value>The update check could not be completed. Check your connection or open GitHub releases in your browser.</value></data>
+  <data name="UpdateTimeout" xml:space="preserve"><value>The update check timed out. Try again or open GitHub releases.</value></data>
+  <data name="BrowserFailed" xml:space="preserve"><value>The browser could not be opened. Visit github.com/Sigibert/WeekTrayInfo/releases.</value></data>
+</root>

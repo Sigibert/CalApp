@@ -19,15 +19,15 @@ if ($msbuildCommand) {
     if (-not $msbuildPath) { throw 'Visual Studio MSBuild was not found.' }
 }
 
-& $msbuildPath (Join-Path $projectRoot 'CalApp.sln') /t:Rebuild "/p:Configuration=$Configuration" /nologo /verbosity:minimal
+& $msbuildPath (Join-Path $projectRoot 'WeekTrayInfo.sln') /t:Rebuild "/p:Configuration=$Configuration" /nologo /verbosity:minimal
 if ($LASTEXITCODE -ne 0) { throw "Build failed with exit code $LASTEXITCODE." }
-$testExecutable = Join-Path $projectRoot "CalApp.Tests\bin\$Configuration\CalApp.Tests.exe"
+$testExecutable = Join-Path $projectRoot "WeekTrayInfo.Tests\bin\$Configuration\WeekTrayInfo.Tests.exe"
 if ($UiTests) { & $testExecutable --ui } else { & $testExecutable }
 if ($LASTEXITCODE -ne 0) { throw "Regression tests failed with exit code $LASTEXITCODE." }
 
 if ($Package) {
     if ($Configuration -ne 'Release') { throw 'Packages must use the Release configuration.' }
-    $applicationPath = Join-Path $projectRoot 'CalApp\bin\Release\CalendarWeekInfo.exe'
+    $applicationPath = Join-Path $projectRoot 'WeekTrayInfo\bin\Release\WeekTrayInfo.exe'
     $version = [Diagnostics.FileVersionInfo]::GetVersionInfo($applicationPath).ProductVersion
     $artifactDirectory = Join-Path $projectRoot 'artifacts'
     New-Item -ItemType Directory -Path $artifactDirectory -Force | Out-Null
@@ -35,7 +35,7 @@ if ($Package) {
     $packageFiles = @($applicationPath, "$applicationPath.config",
         (Join-Path $projectRoot 'README.md'), (Join-Path $projectRoot 'CHANGELOG.md'),
         (Join-Path $projectRoot 'VERSIONING.md'), (Join-Path $projectRoot 'LICENSE'),
-        (Join-Path $projectRoot 'CalApp\bin\Release\de'))
+        (Join-Path $projectRoot 'WeekTrayInfo\bin\Release\de'))
     Compress-Archive -LiteralPath $packageFiles -DestinationPath $archivePath -Force
     Write-Host "Package: $archivePath"
 }
@@ -55,9 +55,9 @@ if ($Installer) {
     if (-not $InnoSetupCompiler -or -not (Test-Path -LiteralPath $InnoSetupCompiler)) {
         throw 'Install Inno Setup 6 or newer, or pass -InnoSetupCompiler with the path to ISCC.exe.'
     }
-    $applicationPath = Join-Path $projectRoot 'CalApp\bin\Release\CalendarWeekInfo.exe'
+    $applicationPath = Join-Path $projectRoot 'WeekTrayInfo\bin\Release\WeekTrayInfo.exe'
     $versionInfo = [Diagnostics.FileVersionInfo]::GetVersionInfo($applicationPath)
-    & $InnoSetupCompiler '/Qp' "/DAppVersion=$($versionInfo.ProductVersion)" "/DNumericVersion=$($versionInfo.FileVersion)" (Join-Path $projectRoot 'installer\CalApp.iss')
+    & $InnoSetupCompiler '/Qp' "/DAppVersion=$($versionInfo.ProductVersion)" "/DNumericVersion=$($versionInfo.FileVersion)" (Join-Path $projectRoot 'installer\WeekTrayInfo.iss')
     if ($LASTEXITCODE -ne 0) { throw "Installer build failed with exit code $LASTEXITCODE." }
     Write-Host "Installer: $(Join-Path $projectRoot "artifacts\WeekTrayInfo-Setup-$($versionInfo.ProductVersion).exe")"
 }
