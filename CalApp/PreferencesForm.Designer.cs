@@ -1,6 +1,6 @@
-﻿namespace CalApp
+namespace CalApp
 {
-    partial class Form2
+    partial class PreferencesForm
     {
         /// <summary>
         /// Required designer variable.
@@ -35,11 +35,11 @@
             this.buttonCalendarWeekIconColor = new System.Windows.Forms.Button();
             this.checkBoxStandardIcon = new System.Windows.Forms.CheckBox();
             this.comboBoxFirstFiscalMonth = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.firstFiscalMonthLabel = new System.Windows.Forms.Label();
+            this.fiscalWeekRuleLabel = new System.Windows.Forms.Label();
             this.comboBoxFiscalWeekRule = new System.Windows.Forms.ComboBox();
-            this.comboBoxFirstDayOfFW = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.comboBoxFirstFiscalWeekday = new System.Windows.Forms.ComboBox();
+            this.firstFiscalWeekdayLabel = new System.Windows.Forms.Label();
             this.buttonOk = new System.Windows.Forms.Button();
             this.buttonApply = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
@@ -54,13 +54,13 @@
             this.buttonCalendarWeekIconForeColor = new System.Windows.Forms.Button();
             this.colorDialogFiscalWeekIconFore = new System.Windows.Forms.ColorDialog();
             this.colorDialogCalendarWeekIconFore = new System.Windows.Forms.ColorDialog();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.iconsGroup = new System.Windows.Forms.GroupBox();
+            this.fiscalCalendarGroup = new System.Windows.Forms.GroupBox();
+            this.startupGroup = new System.Windows.Forms.GroupBox();
             this.checkBoxStartup = new System.Windows.Forms.CheckBox();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.iconsGroup.SuspendLayout();
+            this.fiscalCalendarGroup.SuspendLayout();
+            this.startupGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonFiscalWeekIconColor
@@ -193,27 +193,27 @@
             this.comboBoxFirstFiscalMonth.Size = new System.Drawing.Size(121, 21);
             this.comboBoxFirstFiscalMonth.TabIndex = 7;
             // 
-            // label1
+            // firstFiscalMonthLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 22);
-            this.label1.Margin = new System.Windows.Forms.Padding(6);
-            this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(3);
-            this.label1.Size = new System.Drawing.Size(98, 19);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "First Fiscal Month:";
+            this.firstFiscalMonthLabel.AutoSize = true;
+            this.firstFiscalMonthLabel.Location = new System.Drawing.Point(9, 22);
+            this.firstFiscalMonthLabel.Margin = new System.Windows.Forms.Padding(6);
+            this.firstFiscalMonthLabel.Name = "firstFiscalMonthLabel";
+            this.firstFiscalMonthLabel.Padding = new System.Windows.Forms.Padding(3);
+            this.firstFiscalMonthLabel.Size = new System.Drawing.Size(98, 19);
+            this.firstFiscalMonthLabel.TabIndex = 8;
+            this.firstFiscalMonthLabel.Text = "First Fiscal Month:";
             // 
-            // label2
+            // fiscalWeekRuleLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 84);
-            this.label2.Margin = new System.Windows.Forms.Padding(6);
-            this.label2.Name = "label2";
-            this.label2.Padding = new System.Windows.Forms.Padding(3);
-            this.label2.Size = new System.Drawing.Size(100, 19);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Fiscal Week Rule:";
+            this.fiscalWeekRuleLabel.AutoSize = true;
+            this.fiscalWeekRuleLabel.Location = new System.Drawing.Point(9, 84);
+            this.fiscalWeekRuleLabel.Margin = new System.Windows.Forms.Padding(6);
+            this.fiscalWeekRuleLabel.Name = "fiscalWeekRuleLabel";
+            this.fiscalWeekRuleLabel.Padding = new System.Windows.Forms.Padding(3);
+            this.fiscalWeekRuleLabel.Size = new System.Drawing.Size(100, 19);
+            this.fiscalWeekRuleLabel.TabIndex = 10;
+            this.fiscalWeekRuleLabel.Text = "Fiscal Week Rule:";
             // 
             // comboBoxFiscalWeekRule
             // 
@@ -232,10 +232,10 @@
             this.comboBoxFiscalWeekRule.Size = new System.Drawing.Size(121, 21);
             this.comboBoxFiscalWeekRule.TabIndex = 9;
             // 
-            // comboBoxFirstDayOfFW
+            // comboBoxFirstFiscalWeekday
             // 
-            this.comboBoxFirstDayOfFW.FormattingEnabled = true;
-            this.comboBoxFirstDayOfFW.Items.AddRange(new object[] {
+            this.comboBoxFirstFiscalWeekday.FormattingEnabled = true;
+            this.comboBoxFirstFiscalWeekday.Items.AddRange(new object[] {
             "January",
             "February",
             "March",
@@ -248,22 +248,22 @@
             "October",
             "November",
             "December"});
-            this.comboBoxFirstDayOfFW.Location = new System.Drawing.Point(158, 50);
-            this.comboBoxFirstDayOfFW.Margin = new System.Windows.Forms.Padding(5);
-            this.comboBoxFirstDayOfFW.Name = "comboBoxFirstDayOfFW";
-            this.comboBoxFirstDayOfFW.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxFirstDayOfFW.TabIndex = 11;
+            this.comboBoxFirstFiscalWeekday.Location = new System.Drawing.Point(158, 50);
+            this.comboBoxFirstFiscalWeekday.Margin = new System.Windows.Forms.Padding(5);
+            this.comboBoxFirstFiscalWeekday.Name = "comboBoxFirstFiscalWeekday";
+            this.comboBoxFirstFiscalWeekday.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxFirstFiscalWeekday.TabIndex = 11;
             // 
-            // label3
+            // firstFiscalWeekdayLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 53);
-            this.label3.Margin = new System.Windows.Forms.Padding(6);
-            this.label3.Name = "label3";
-            this.label3.Padding = new System.Windows.Forms.Padding(3);
-            this.label3.Size = new System.Drawing.Size(119, 19);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "First Day of the Week:";
+            this.firstFiscalWeekdayLabel.AutoSize = true;
+            this.firstFiscalWeekdayLabel.Location = new System.Drawing.Point(9, 53);
+            this.firstFiscalWeekdayLabel.Margin = new System.Windows.Forms.Padding(6);
+            this.firstFiscalWeekdayLabel.Name = "firstFiscalWeekdayLabel";
+            this.firstFiscalWeekdayLabel.Padding = new System.Windows.Forms.Padding(3);
+            this.firstFiscalWeekdayLabel.Size = new System.Drawing.Size(119, 19);
+            this.firstFiscalWeekdayLabel.TabIndex = 12;
+            this.firstFiscalWeekdayLabel.Text = "First Day of the Week:";
             // 
             // buttonOk
             // 
@@ -320,49 +320,49 @@
             this.buttonDefault.UseVisualStyleBackColor = true;
             this.buttonDefault.Click += new System.EventHandler(this.ButtonDefault_Click);
             // 
-            // groupBox1
+            // iconsGroup
             // 
-            this.groupBox1.Controls.Add(this.buttonCalendarWeekIconColor);
-            this.groupBox1.Controls.Add(this.checkBoxStandardIcon);
-            this.groupBox1.Controls.Add(this.checkBoxCalendarWeekIcon);
-            this.groupBox1.Controls.Add(this.checkBoxFiscalWeekIcon);
-            this.groupBox1.Controls.Add(this.buttonFiscalWeekIconColor);
-            this.groupBox1.Controls.Add(this.buttonStandardIconColor);
-            this.groupBox1.Controls.Add(this.checkBoxFiscalWeekAutoFore);
-            this.groupBox1.Controls.Add(this.buttonFiscalWeekIconForeColor);
-            this.groupBox1.Controls.Add(this.checkBoxCalendarWeekAutoFore);
-            this.groupBox1.Controls.Add(this.buttonCalendarWeekIconForeColor);
-            this.groupBox1.Location = new System.Drawing.Point(9, 9);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(423, 124);
-            this.groupBox1.TabIndex = 19;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Icons";
+            this.iconsGroup.Controls.Add(this.buttonCalendarWeekIconColor);
+            this.iconsGroup.Controls.Add(this.checkBoxStandardIcon);
+            this.iconsGroup.Controls.Add(this.checkBoxCalendarWeekIcon);
+            this.iconsGroup.Controls.Add(this.checkBoxFiscalWeekIcon);
+            this.iconsGroup.Controls.Add(this.buttonFiscalWeekIconColor);
+            this.iconsGroup.Controls.Add(this.buttonStandardIconColor);
+            this.iconsGroup.Controls.Add(this.checkBoxFiscalWeekAutoFore);
+            this.iconsGroup.Controls.Add(this.buttonFiscalWeekIconForeColor);
+            this.iconsGroup.Controls.Add(this.checkBoxCalendarWeekAutoFore);
+            this.iconsGroup.Controls.Add(this.buttonCalendarWeekIconForeColor);
+            this.iconsGroup.Location = new System.Drawing.Point(9, 9);
+            this.iconsGroup.Name = "iconsGroup";
+            this.iconsGroup.Size = new System.Drawing.Size(423, 124);
+            this.iconsGroup.TabIndex = 19;
+            this.iconsGroup.TabStop = false;
+            this.iconsGroup.Text = "Icons";
             // 
-            // groupBox2
+            // fiscalCalendarGroup
             // 
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.comboBoxFirstFiscalMonth);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.comboBoxFiscalWeekRule);
-            this.groupBox2.Controls.Add(this.comboBoxFirstDayOfFW);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Location = new System.Drawing.Point(9, 139);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(423, 115);
-            this.groupBox2.TabIndex = 20;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Fiscal Calendar";
+            this.fiscalCalendarGroup.Controls.Add(this.firstFiscalMonthLabel);
+            this.fiscalCalendarGroup.Controls.Add(this.comboBoxFirstFiscalMonth);
+            this.fiscalCalendarGroup.Controls.Add(this.firstFiscalWeekdayLabel);
+            this.fiscalCalendarGroup.Controls.Add(this.comboBoxFiscalWeekRule);
+            this.fiscalCalendarGroup.Controls.Add(this.comboBoxFirstFiscalWeekday);
+            this.fiscalCalendarGroup.Controls.Add(this.fiscalWeekRuleLabel);
+            this.fiscalCalendarGroup.Location = new System.Drawing.Point(9, 139);
+            this.fiscalCalendarGroup.Name = "fiscalCalendarGroup";
+            this.fiscalCalendarGroup.Size = new System.Drawing.Size(423, 115);
+            this.fiscalCalendarGroup.TabIndex = 20;
+            this.fiscalCalendarGroup.TabStop = false;
+            this.fiscalCalendarGroup.Text = "Fiscal Calendar";
             // 
-            // groupBox3
+            // startupGroup
             // 
-            this.groupBox3.Controls.Add(this.checkBoxStartup);
-            this.groupBox3.Location = new System.Drawing.Point(9, 260);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(423, 55);
-            this.groupBox3.TabIndex = 21;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Startup";
+            this.startupGroup.Controls.Add(this.checkBoxStartup);
+            this.startupGroup.Location = new System.Drawing.Point(9, 260);
+            this.startupGroup.Name = "startupGroup";
+            this.startupGroup.Size = new System.Drawing.Size(423, 55);
+            this.startupGroup.TabIndex = 21;
+            this.startupGroup.TabStop = false;
+            this.startupGroup.Text = "Startup";
             // 
             // checkBoxStartup
             // 
@@ -376,16 +376,16 @@
             this.checkBoxStartup.Text = "Start with Windows";
             this.checkBoxStartup.UseVisualStyleBackColor = true;
             //
-            // Form2
+            // PreferencesForm
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(457, 416);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.startupGroup);
+            this.Controls.Add(this.fiscalCalendarGroup);
+            this.Controls.Add(this.iconsGroup);
             this.Controls.Add(this.buttonDefault);
             this.Controls.Add(this.buttonReset);
             this.Controls.Add(this.buttonCancel);
@@ -393,17 +393,16 @@
             this.Controls.Add(this.buttonOk);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.Name = "Form2";
+            this.Name = "PreferencesForm";
             this.Padding = new System.Windows.Forms.Padding(6);
             this.Text = "Preferences";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form2_FormClosing);
-            this.Load += new System.EventHandler(this.Form2_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.Load += new System.EventHandler(this.PreferencesForm_Load);
+            this.iconsGroup.ResumeLayout(false);
+            this.iconsGroup.PerformLayout();
+            this.fiscalCalendarGroup.ResumeLayout(false);
+            this.fiscalCalendarGroup.PerformLayout();
+            this.startupGroup.ResumeLayout(false);
+            this.startupGroup.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -417,11 +416,11 @@
         private System.Windows.Forms.Button buttonCalendarWeekIconColor;
         private System.Windows.Forms.CheckBox checkBoxStandardIcon;
         private System.Windows.Forms.ComboBox comboBoxFirstFiscalMonth;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label firstFiscalMonthLabel;
+        private System.Windows.Forms.Label fiscalWeekRuleLabel;
         private System.Windows.Forms.ComboBox comboBoxFiscalWeekRule;
-        private System.Windows.Forms.ComboBox comboBoxFirstDayOfFW;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBoxFirstFiscalWeekday;
+        private System.Windows.Forms.Label firstFiscalWeekdayLabel;
         private System.Windows.Forms.Button buttonOk;
         private System.Windows.Forms.Button buttonApply;
         private System.Windows.Forms.Button buttonCancel;
@@ -430,9 +429,9 @@
         private System.Windows.Forms.ColorDialog colorDialogStandardIcon;
         private System.Windows.Forms.ColorDialog colorDialogCalendarWeekIcon;
         private System.Windows.Forms.ColorDialog colorDialogFiscalWeekIcon;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox iconsGroup;
+        private System.Windows.Forms.GroupBox fiscalCalendarGroup;
+        private System.Windows.Forms.GroupBox startupGroup;
         private System.Windows.Forms.CheckBox checkBoxStartup;
         private System.Windows.Forms.CheckBox checkBoxFiscalWeekAutoFore;
         private System.Windows.Forms.Button buttonFiscalWeekIconForeColor;
