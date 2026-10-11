@@ -31,7 +31,7 @@ namespace WeekTrayInfo
             this.licenseGroup = new System.Windows.Forms.GroupBox();
             this.licenseText = new System.Windows.Forms.TextBox();
             this.authorLabel = new System.Windows.Forms.Label();
-            this.contactLink = new System.Windows.Forms.LinkLabel();
+            this.feedbackLink = new System.Windows.Forms.LinkLabel();
             this.copyrightLabel = new System.Windows.Forms.Label();
             this.versionLabel = new System.Windows.Forms.Label();
             this.closeButton = new System.Windows.Forms.Button();
@@ -76,18 +76,18 @@ namespace WeekTrayInfo
             this.authorLabel.TabIndex = 2;
             this.authorLabel.Text = "Author: ";
             // 
-            // contactLink
+            // feedbackLink
             // 
-            this.contactLink.AutoSize = true;
-            this.contactLink.Location = new System.Drawing.Point(9, 176);
-            this.contactLink.Margin = new System.Windows.Forms.Padding(3);
-            this.contactLink.Name = "contactLink";
-            this.contactLink.Padding = new System.Windows.Forms.Padding(3);
-            this.contactLink.Size = new System.Drawing.Size(50, 19);
-            this.contactLink.TabIndex = 3;
-            this.contactLink.TabStop = true;
-            this.contactLink.Text = "Contact";
-            this.contactLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ContactLink_LinkClicked);
+            this.feedbackLink.AutoSize = true;
+            this.feedbackLink.Location = new System.Drawing.Point(9, 176);
+            this.feedbackLink.Margin = new System.Windows.Forms.Padding(3);
+            this.feedbackLink.Name = "feedbackLink";
+            this.feedbackLink.Padding = new System.Windows.Forms.Padding(3);
+            this.feedbackLink.Size = new System.Drawing.Size(50, 19);
+            this.feedbackLink.TabIndex = 3;
+            this.feedbackLink.TabStop = true;
+            this.feedbackLink.Text = "Feedback & report a bug";
+            this.feedbackLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FeedbackLink_LinkClicked);
             // 
             // copyrightLabel
             // 
@@ -172,7 +172,7 @@ namespace WeekTrayInfo
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.versionLabel);
             this.Controls.Add(this.copyrightLabel);
-            this.Controls.Add(this.contactLink);
+            this.Controls.Add(this.feedbackLink);
             this.Controls.Add(this.authorLabel);
             this.Controls.Add(this.licenseGroup);
             this.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -199,7 +199,7 @@ namespace WeekTrayInfo
 
         private System.Windows.Forms.GroupBox licenseGroup;
         private System.Windows.Forms.Label authorLabel;
-        private System.Windows.Forms.LinkLabel contactLink;
+        private System.Windows.Forms.LinkLabel feedbackLink;
         private System.Windows.Forms.TextBox licenseText;
         private System.Windows.Forms.Label copyrightLabel;
         private System.Windows.Forms.Label versionLabel;

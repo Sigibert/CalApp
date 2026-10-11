@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.2
+
+- Replace the About dialog's email contact with a GitHub Issues link for feedback and bug reports.
+- Localize the link and browser-failure fallback in English and German; remove the email address from current application resources.
+
 ## 2.0.1
 
 - Replace the calendar's File and help menus with a compact, accessible ellipsis button and Alt+M shortcut.

@@ -223,7 +223,7 @@ Release numbering and the preparation process are documented in [VERSIONING.md](
 - `Preferences/StartupRegistration`: the current-user Windows startup entry.
 - `WeekTrayInfo.Tests`: regression runner with isolated temporary settings and fake startup entries.
 
-The stable release is 2.0.1 on `master`, tagged `v2.0.1`. Development continues on
+The stable release is 2.0.2 on `master`, tagged `v2.0.2`. Development continues on
 `dev`. Version 2.0 starts a clean WeekTrayInfo installation with new application,
 settings and tray identities. Earlier CalApp / Calendar Week Info releases remain
 available as historical tags. Exit and uninstall an earlier installed version before
@@ -239,6 +239,9 @@ installed by running the new setup; a manual update check is included in the tra
 EXE and setup are currently unsigned; no publicly trusted signing certificate is configured.
 
 ## License
+
+For feedback and bug reports, use [GitHub Issues](https://github.com/Sigibert/WeekTrayInfo/issues)
+or the feedback link in the About dialog. Reports are public and require a GitHub account.
 
 Released under the [MIT License](LICENSE). Copyright (c) 2026 Christoph Ziegler.
 

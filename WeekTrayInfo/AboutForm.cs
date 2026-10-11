@@ -20,17 +20,17 @@ namespace WeekTrayInfo
             licenseText.Text = Resource.Licence;
         }
 
-        private void ContactLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void FeedbackLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try
             {
-                Process.Start(new ProcessStartInfo("mailto:christophzieglerapps@outlook.com?subject=WeekTrayInfo")
+                Process.Start(new ProcessStartInfo("https://github.com/Sigibert/WeekTrayInfo/issues")
                 { UseShellExecute = true });
             }
             catch (Exception ex) when (ex is System.ComponentModel.Win32Exception || ex is InvalidOperationException)
             {
-                MessageBox.Show(this, AppText.Get("EmailUnavailable"),
-                    AppText.Get("contactLink"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, AppText.Get("FeedbackUnavailable"),
+                    AppText.Get("feedbackLink"), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

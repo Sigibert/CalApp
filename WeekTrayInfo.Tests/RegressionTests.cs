@@ -651,7 +651,7 @@ namespace WeekTrayInfo.Tests
                     TrayIcons icons = Field<TrayIcons>(context, "trayIcons");
                     var menu = Field<ContextMenuStrip>(icons, "trayMenu");
                     Equal(german ? "Beenden" : "Exit", menu.Items[0].Text);
-                    using (var about = new AboutForm()) Equal(german ? "Kontakt" : "Contact", Field<LinkLabel>(about, "contactLink").Text);
+                    using (var about = new AboutForm()) Equal(german ? "Feedback & Fehler melden" : "Feedback & report a bug", Field<LinkLabel>(about, "feedbackLink").Text);
                 }
                 languages.SelectedItem = AppLanguage.German;
                 Invoke(preferences, "ButtonReset_Click"); Equal(AppLanguage.English, languages.SelectedItem);

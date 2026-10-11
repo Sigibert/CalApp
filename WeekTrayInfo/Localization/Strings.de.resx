@@ -53,14 +53,14 @@
   <data name="SystemLanguage" xml:space="preserve"><value>System (automatisch)</value></data>
   <data name="authorLabel" xml:space="preserve"><value>Autor: Christoph Ziegler</value></data>
   <data name="Version" xml:space="preserve"><value>Version: {0}</value></data>
-  <data name="contactLink" xml:space="preserve"><value>Kontakt</value></data>
+  <data name="feedbackLink" xml:space="preserve"><value>Feedback &amp; Fehler melden</value></data>
   <data name="licenseGroup" xml:space="preserve"><value>Lizenzinformationen</value></data>
   <data name="closeButton" xml:space="preserve"><value>OK</value></data>
   <data name="ApplicationInfo" xml:space="preserve"><value>Kalender- und Geschäftswochen auf einen Blick.
 
 Zeigt Kalender- und Geschäftswochen im Windows-Infobereich. Der Geschäftskalender ist einstellbar; Kalenderwochen folgen ISO 8601.</value></data>
-  <data name="EmailUnavailable" xml:space="preserve"><value>Das E-Mail-Programm konnte nicht geöffnet werden.
-Kontakt: christophzieglerapps@outlook.com</value></data>
+  <data name="FeedbackUnavailable" xml:space="preserve"><value>Der Browser konnte nicht geöffnet werden.
+Bitte https://github.com/Sigibert/WeekTrayInfo/issues aufrufen.</value></data>
   <data name="ApplyFailed" xml:space="preserve"><value>Die Einstellungen konnten nicht übernommen werden:
 {0}</value></data>
   <data name="AlreadyRunning" xml:space="preserve"><value>WeekTrayInfo läuft bereits.</value></data>

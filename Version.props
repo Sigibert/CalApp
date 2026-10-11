@@ -1,7 +1,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <!-- Change this one value when preparing the next release. -->
-    <WeekTrayInfoVersion>2.0.1</WeekTrayInfoVersion>
+    <WeekTrayInfoVersion>2.0.2</WeekTrayInfoVersion>
     <WeekTrayInfoNumericVersion>$([System.Text.RegularExpressions.Regex]::Replace('$(WeekTrayInfoVersion)', '[-+].*$', '')).0</WeekTrayInfoNumericVersion>
   </PropertyGroup>
 </Project>

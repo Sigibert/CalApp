@@ -53,14 +53,14 @@
   <data name="SystemLanguage" xml:space="preserve"><value>System (automatic)</value></data>
   <data name="authorLabel" xml:space="preserve"><value>Author: Christoph Ziegler</value></data>
   <data name="Version" xml:space="preserve"><value>Version: {0}</value></data>
-  <data name="contactLink" xml:space="preserve"><value>Contact</value></data>
+  <data name="feedbackLink" xml:space="preserve"><value>Feedback &amp; report a bug</value></data>
   <data name="licenseGroup" xml:space="preserve"><value>License information</value></data>
   <data name="closeButton" xml:space="preserve"><value>OK</value></data>
   <data name="ApplicationInfo" xml:space="preserve"><value>Calendar and fiscal weeks at a glance.
 
 Shows calendar and fiscal weeks in the Windows notification area. The fiscal calendar is configurable; calendar weeks follow ISO 8601.</value></data>
-  <data name="EmailUnavailable" xml:space="preserve"><value>The email application could not be opened.
-Contact: christophzieglerapps@outlook.com</value></data>
+  <data name="FeedbackUnavailable" xml:space="preserve"><value>The browser could not be opened.
+Please visit https://github.com/Sigibert/WeekTrayInfo/issues</value></data>
   <data name="ApplyFailed" xml:space="preserve"><value>Preferences could not be applied:
 {0}</value></data>
   <data name="AlreadyRunning" xml:space="preserve"><value>WeekTrayInfo is already running.</value></data>
